@@ -63,8 +63,8 @@ wikiUrl = "https://en.wikipedia.org/w/api.php?action=opensearch&search="  + sear
         async: false,
         dataType: "json",
         success: function (data, textStatus, jqXHR) {
-            console.log(data[2][1]);
-            wikiResults = data[2][1];
+            console.log(data[2][0]);
+            wikiResults = data[2][0];
         },
         error: function (errorMessage) {
         }
