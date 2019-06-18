@@ -66,7 +66,7 @@ wikiUrl = "https://en.wikipedia.org/w/api.php?action=opensearch&search="  + sear
         }
     });
 	searchTerm = $('#state');
-	console.log(searchTerm[0].value);
+	console.log(searchTerm[0].value[0]);
 });
 
 //more stuff below
