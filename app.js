@@ -47,7 +47,7 @@ var wikiUrl;
 
 // $(document).ready(function(){
 $('#submit').on("click", function(){ 
-
+searchTerm = $('#state');
 searchRefined = searchTerm[0].value;
 
 wikiUrl = "https://en.wikipedia.org/w/api.php?action=opensearch&search="  + searchRefined + "&format=json&origin=*";
