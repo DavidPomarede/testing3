@@ -41,6 +41,9 @@ var popup = L.popup()
 
 var searchTerm;
 var searchRefined;
+var wikiResults;
+var QRimg = $('<img>');
+$('#qrstuff').append(QRimg);
 
 console.log(wikiUrl);
 var wikiUrl;
@@ -60,21 +63,28 @@ wikiUrl = "https://en.wikipedia.org/w/api.php?action=opensearch&search="  + sear
         async: false,
         dataType: "json",
         success: function (data, textStatus, jqXHR) {
-            console.log(data);
+            console.log(data[2][2]);
+            wikiResults = data[2][2];
         },
         error: function (errorMessage) {
         }
     });
 	searchTerm = $('#state');
-	console.log(searchTerm[0].value[0]);
+  console.log(wikiResults);
+  var stuffToQr = wikiResults;
+  var getUrl = "http://api.qrserver.com/v1/create-qr-code/?data=" + stuffToQr + "!&size=100x100";
+  $('#results').text(wikiResults);
+  QRimg.attr('src', getUrl);
 });
 
 //more stuff below
 
 $("#message").html("<h1>Stuff to QR</h1>");
 
-var stuffToQr = "hello world";
-var getUrl = "http://api.qrserver.com/v1/create-qr-code/?data=" + stuffToQr + "!&size=100x100";
+
+
+
+// QRimg.attr('src', getUrl);
 
 
 //$('#submit').on("click", function() {
