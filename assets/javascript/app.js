@@ -98,7 +98,7 @@ wikiUrl2 = "https://en.wikipedia.org/w/api.php?action=opensearch&search="  + sea
                 center: [latitude, longitude],
                 zoom: 15
             });
-            L.tileLayer('http://{s}.tile.osm.org/{z}/{x}/{y}.png', {
+            L.tileLayer('https://{s}.tile.osm.org/{z}/{x}/{y}.png', {
                 attribution: '&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
             }).addTo(map);
             var popup = L.popup()
@@ -116,7 +116,7 @@ wikiUrl2 = "https://en.wikipedia.org/w/api.php?action=opensearch&search="  + sea
         // });
     }).then(function(){$.ajax({
         method: "GET",
-        url: "http://dataservice.accuweather.com/forecasts/v1/daily/1day/" + zipCode + "?apikey=Hh3qVnjiiZZFlhLgskjnE1kxf4orP7uN",
+        url: "https://dataservice.accuweather.com/forecasts/v1/daily/1day/" + zipCode + "?apikey=Hh3qVnjiiZZFlhLgskjnE1kxf4orP7uN",
     }).then(function(data2) {
             console.log("weather: " + data2);
             console.log(data2);
