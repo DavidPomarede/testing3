@@ -62,7 +62,7 @@ $('#submit').on("click", function(){
 searchTerm = $('#state');
 searchRefined = searchTerm[0].value;
 
-wikiUrl = "http://open.mapquestapi.com/geocoding/v1/address?key=KL6bvb80lfLEE1Ys5TjUKyu6Be7gdXLX&location="  + searchRefined;
+wikiUrl = "https://open.mapquestapi.com/geocoding/v1/address?key=KL6bvb80lfLEE1Ys5TjUKyu6Be7gdXLX&location="  + searchRefined;
 
 wikiUrl2 = "https://en.wikipedia.org/w/api.php?action=opensearch&search="  + searchRefined2 + "&format=json&origin=*";
 
@@ -203,7 +203,7 @@ wikiUrl2 = "https://en.wikipedia.org/w/api.php?action=opensearch&search="  + sea
 	searchTerm = $('#state');
   console.log(wikiResults);
   var stuffToQr = wikiResults;
-  var getUrl = "http://api.qrserver.com/v1/create-qr-code/?data=" + stuffToQr + "!&size=100x100";
+  var getUrl = "https://api.qrserver.com/v1/create-qr-code/?data=" + stuffToQr + "!&size=100x100";
   $('#results').text(wikiResults);
   QRimg.attr('src', getUrl);
 });
