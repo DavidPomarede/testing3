@@ -6,3 +6,7 @@ background-color: #999966;
 height: 280px;
 width: 280px; 
 }
+
+body {
+    font-family: 'B612 Mono', monospace;
+}
