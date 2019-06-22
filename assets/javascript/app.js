@@ -1,5 +1,5 @@
 //mapbox info
-
+// stuff
 
 var map = L.map('mapid', {
      //center: [43.64701, -79.39425], //comment out one of the centers
