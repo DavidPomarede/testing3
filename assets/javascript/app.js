@@ -138,7 +138,7 @@ wikiUrl2 = "https://en.wikipedia.org/w/api.php?action=opensearch&search="  + sea
         })
     }).then(function(){$.ajax({
         method: "GET",
-        url: "http://api.airpollutionapi.com/1.0/aqi?lat=" + latitude + "&lon=" + longitude + "&APPID=qb5f8bub81ciq4e1rgrf5kcdo1",
+        url: "https://cors-anywhere.herokuapp.com/http://api.airpollutionapi.com/1.0/aqi?lat=" + latitude + "&lon=" + longitude + "&APPID=qb5f8bub81ciq4e1rgrf5kcdo1",
     }).then(function(data3) {
             console.log("weather: " + data3);
             console.log(data3);
