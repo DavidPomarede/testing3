@@ -1,0 +1,66 @@
+
+body {
+    position: relative;
+    background-image: linear-gradient(rgba(255, 255, 255, 0.842), rgba(255, 255, 255, 0.589)),url('http://constructionlitmag.com/wp-content/uploads/2018/09/Invisible-Cities_Mark-Sketches_close-up_2-1024x678.jpg');
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    background-position: 50% 50%;
+}
+.general {
+    position: absolute;
+    text-align: center;
+    width: 100%;
+    margin-top: 0%;
+}
+h1 {
+    font-family: Avenir LT,sans-serif;
+    font-size: 36pt;
+    color: #bb7171;
+    margin: 0;
+}
+h2 {
+    font-family: Avenir LT,sans-serif;
+    font-size: 16pt;
+    color: #bb7171;
+    margin: 5px;
+}
+.box1 {
+    position: absolute;
+    margin: 30px;
+    top: 100px;
+    left: 75px;
+    width: 300px;
+    height: 250px;
+    color: #c36a2d;
+    border: 3px dotted #e9e4e6;
+}
+.box2 {
+    position: absolute;
+    margin: 30px;
+    top: 100px;
+    right: 75px;
+    width: 300px;
+    height: 250px;
+    color: #c36a2d;
+    border: 3px dotted #e9e4e6;
+}
+.information {
+    position: absolute;
+    margin: 30px;
+    top: 100px;
+    right:450px;
+    width: 300px;
+    height: 500px;
+    color: #c36a2d;
+    border: 3px dotted #e9e4e6;
+}
+footer {
+    position: fixed;
+    left: 0;
+    bottom: 0;
+    width: 100%;
+    color: #bb7171;
+    text-align: center;
+    font-family: Avenir LT,sans-serif;
+    font-size: 12px
+}
