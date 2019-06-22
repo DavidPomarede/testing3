@@ -99,7 +99,7 @@ wikiUrl2 = "https://en.wikipedia.org/w/api.php?action=opensearch&search="  + sea
                 zoom: 15
             });
             L.tileLayer('https://{s}.tile.osm.org/{z}/{x}/{y}.png', {
-                attribution: '&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
+                attribution: '&copy; OpenStreetMap'
             }).addTo(map);
             var popup = L.popup()
             .setLatLng([latitude, longitude])
@@ -116,7 +116,7 @@ wikiUrl2 = "https://en.wikipedia.org/w/api.php?action=opensearch&search="  + sea
         // });
     }).then(function(){$.ajax({
         method: "GET",
-        url: "https://dataservice.accuweather.com/forecasts/v1/daily/1day/" + zipCode + "?apikey=Hh3qVnjiiZZFlhLgskjnE1kxf4orP7uN",
+        url: "https://cors-anywhere.herokuapp.com/https://dataservice.accuweather.com/forecasts/v1/daily/1day/" + zipCode + "?apikey=Hh3qVnjiiZZFlhLgskjnE1kxf4orP7uN",
     }).then(function(data2) {
             console.log("weather: " + data2);
             console.log(data2);
@@ -127,9 +127,20 @@ wikiUrl2 = "https://en.wikipedia.org/w/api.php?action=opensearch&search="  + sea
             console.log(data2.DailyForecasts[0].Temperature.Maximum.Value);
             console.log(data2.DailyForecasts[0].Temperature.Minimum.Value);
 
-            weatherDay.html("Today's Forecast: " + data2.DailyForecasts[0].Day.IconPhrase + "<br>Is it going to rain during the day? " + data2.DailyForecasts[0].Day.HasPrecipitation);
-            weatherNight.html("Tonight: " + data2.DailyForecasts[0].Night.IconPhrase + "<br>Is it going to rain tonight? " + data2.DailyForecasts[0].Night.HasPrecipitation);
-            temperature.html("Maximum Temp: " + data2.DailyForecasts[0].Temperature.Maximum.Value + "°F<br>Minimum Temp: " + data2.DailyForecasts[0].Temperature.Minimum.Value + "°F");
+
+            if(data2.DailyForecasts[0].Day.HasPrecipitation) {
+                weatherDay.html("Today's Forecast: " + data2.DailyForecasts[0].Day.IconPhrase + ".<br>Is it going to rain during the day? Probably.");
+            } else {
+                weatherDay.html("Today's Forecast: " + data2.DailyForecasts[0].Day.IconPhrase + ".<br>Is it going to rain during the day? Probably Not.");
+            };
+            if(data2.DailyForecasts[0].Night.HasPrecipitation) {
+                weatherNight.html("Tonight: " + data2.DailyForecasts[0].Night.IconPhrase + ".<br>Is it going to rain tonight? Probably.");
+            } else {
+                weatherNight.html("Tonight: " + data2.DailyForecasts[0].Night.IconPhrase + ".<br>Is it going to rain tonight? Probably Not.");
+            };
+                        var maxTemp = data2.DailyForecasts[0].Temperature.Maximum.Value;
+            var minTemp = data2.DailyForecasts[0].Temperature.Minimum.Value;
+            temperature.html("Maximum Temp: " + maxTemp + "°F<br>Minimum Temp: " + minTemp + "°F");
 
 
 
@@ -139,9 +150,13 @@ wikiUrl2 = "https://en.wikipedia.org/w/api.php?action=opensearch&search="  + sea
     }).then(function(){$.ajax({
         method: "GET",
         url: "https://cors-anywhere.herokuapp.com/http://api.airpollutionapi.com/1.0/aqi?lat=" + latitude + "&lon=" + longitude + "&APPID=qb5f8bub81ciq4e1rgrf5kcdo1",
+        error: function () {
+            pm.text("Error: There is no air quality information available for that area. You are too far away from a measurement station (500km+).")
+        }
     }).then(function(data3) {
             console.log("weather: " + data3);
             console.log(data3);
+            console.log(data3.msg);
             console.log(data3.data.alert);
             console.log(data3.data.aqiParams[0].value);
             console.log(data3.data.aqiParams[1].value);
@@ -150,7 +165,8 @@ wikiUrl2 = "https://en.wikipedia.org/w/api.php?action=opensearch&search="  + sea
             console.log(data3.data.aqiParams[4].value);
 
             aqiMessage.text(data3.data.alert);
-            pm.text("Air Quality:<br>Particulate matter: " + data3.data.aqiParams[0].value);
+            $('#pm').text(data3.msg);
+            pm.html("<br>Air Quality:<br>Particulate matter: " + data3.data.aqiParams[0].value);
             humidity.text("Humidity: " + data3.data.aqiParams[1].value);
             pressure.text("Pressure: " + data3.data.aqiParams[2].value);
             windSpeed.text("Wind Speed: " + data3.data.aqiParams[3].value);
