@@ -150,7 +150,7 @@ wikiUrl2 = "https://en.wikipedia.org/w/api.php?action=opensearch&search="  + sea
             console.log(data3.data.aqiParams[4].value);
 
             aqiMessage.text(data3.data.alert);
-            pm.text("Particulate matter: " + data3.data.aqiParams[0].value);
+            pm.text("Air Quality:<br>Particulate matter: " + data3.data.aqiParams[0].value);
             humidity.text("Humidity: " + data3.data.aqiParams[1].value);
             pressure.text("Pressure: " + data3.data.aqiParams[2].value);
             windSpeed.text("Wind Speed: " + data3.data.aqiParams[3].value);
