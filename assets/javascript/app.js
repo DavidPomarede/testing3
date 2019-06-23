@@ -42,8 +42,12 @@ console.log(wikiUrl);
 var wikiUrl;
 
 var weatherDay = $('#weatherDay');
+var weatherDay2 = $('#weatherDay2');
+var weatherDay3 = $('#weatherDay3');
 var weatherNight = $('#weatherNight');
 var temperature = $('#temperature');
+var temperature2 = $('#temperature2');
+var temperature3 = $('#temperature3');
 var aqiMessage = $('#aqiMessage');
 var pm = $('#pm');
 var humidity = $('#humidity');
@@ -114,33 +118,70 @@ wikiUrl2 = "https://en.wikipedia.org/w/api.php?action=opensearch&search="  + sea
 
 
         // });
+
+
+    // }).then(function(){$.ajax({
+    //     method: "GET",
+    //     url: "https://cors-anywhere.herokuapp.com/https://dataservice.accuweather.com/locations/v1/cities/autocomplete?apikey=Hh3qVnjiiZZFlhLgskjnE1kxf4orP7uN&q=" + searchRefined,
+    // }).then(function(data5) {
+    //         console.log("weather location: " + data5);
+    //         console.log(data5);
+
+
+    // })
+
+
     }).then(function(){$.ajax({
         method: "GET",
-        url: "https://cors-anywhere.herokuapp.com/https://dataservice.accuweather.com/forecasts/v1/daily/1day/" + zipCode + "?apikey=Hh3qVnjiiZZFlhLgskjnE1kxf4orP7uN",
+        // url: "https://cors-anywhere.herokuapp.com/https://dataservice.accuweather.com/forecasts/v1/daily/1day/" + zipCode + "?apikey=Hh3qVnjiiZZFlhLgskjnE1kxf4orP7uN",
+        url: "https://cors-anywhere.herokuapp.com/http://api.openweathermap.org/data/2.5/forecast/?lat=" + latitude + "&lon=" + longitude + "&APPID=0cd45b9194d49ecbc168d3cc2ab3902e",
+        // url: "https://cors-anywhere.herokuapp.com/https://api.accuweather.com/locations/v1/geoposition/search.json?q=" + latitude  + "," + longitude + "&apikey=Hh3qVnjiiZZFlhLgskjnE1kxf4orP7uN"
     }).then(function(data2) {
             console.log("weather: " + data2);
             console.log(data2);
-            console.log(data2.DailyForecasts[0].Day.IconPhrase);
-            console.log(data2.DailyForecasts[0].Day.HasPrecipitation);
-            console.log(data2.DailyForecasts[0].Night.IconPhrase);
-            console.log(data2.DailyForecasts[0].Night.HasPrecipitation);
-            console.log(data2.DailyForecasts[0].Temperature.Maximum.Value);
-            console.log(data2.DailyForecasts[0].Temperature.Minimum.Value);
+            console.log(data2.list[0].weather[0].description);
+            console.log(data2.list[0].main.temp);
+            weatherDay.html("Today: " + data2.list[0].weather[0].description);
+            temperature.html("Temp: " + Math.ceil(((data2.list[0].main.temp - 273.15) * 1.8) + 32) + "°F");
+            weatherDay2.html("Tomorrow: " + data2.list[8].weather[0].description);
+            temperature2.html("Temp: " + Math.ceil(((data2.list[8].main.temp - 273.15) * 1.8) + 32) + "°F");
+            weatherDay3.html("The day after tomorrow: " + data2.list[16].weather[0].description);
+            temperature3.html("Temp: " + Math.ceil(((data2.list[16].main.temp - 273.15) * 1.8) + 32) + "°F");
 
 
-            if(data2.DailyForecasts[0].Day.HasPrecipitation) {
-                weatherDay.html("Today's Forecast: " + data2.DailyForecasts[0].Day.IconPhrase + ".<br>Is it going to rain during the day? Probably.");
-            } else {
-                weatherDay.html("Today's Forecast: " + data2.DailyForecasts[0].Day.IconPhrase + ".<br>Is it going to rain during the day? Probably Not.");
-            };
-            if(data2.DailyForecasts[0].Night.HasPrecipitation) {
-                weatherNight.html("Tonight: " + data2.DailyForecasts[0].Night.IconPhrase + ".<br>Is it going to rain tonight? Probably.");
-            } else {
-                weatherNight.html("Tonight: " + data2.DailyForecasts[0].Night.IconPhrase + ".<br>Is it going to rain tonight? Probably Not.");
-            };
-                        var maxTemp = data2.DailyForecasts[0].Temperature.Maximum.Value;
-            var minTemp = data2.DailyForecasts[0].Temperature.Minimum.Value;
-            temperature.html("Maximum Temp: " + maxTemp + "°F<br>Minimum Temp: " + minTemp + "°F");
+
+
+
+
+            //weather right now
+            // console.log(data2.main.temp);
+            // console.log(data2.weather[0].description);
+            // console.log(data2.visibility);
+            // weatherDay.html("Today's Forecast: " + data2.weather[0].description);
+            // temperature.html("Temperature: " + Math.ceil((data2.main.temp-32) / 1.8) + "°F");
+
+
+            // accuweather stuff
+            // console.log(data2.DailyForecasts[0].Day.HasPrecipitation);
+            // console.log(data2.DailyForecasts[0].Night.IconPhrase);
+            // console.log(data2.DailyForecasts[0].Night.HasPrecipitation);
+            // console.log(data2.DailyForecasts[0].Temperature.Maximum.Value);
+            // console.log(data2.DailyForecasts[0].Temperature.Minimum.Value);
+
+
+            // if(data2.DailyForecasts[0].Day.HasPrecipitation) {
+            //     weatherDay.html("Today's Forecast: " + data2.DailyForecasts[0].Day.IconPhrase + ".<br>Is it going to rain during the day? Probably.");
+            // } else {
+            //     weatherDay.html("Today's Forecast: " + data2.DailyForecasts[0].Day.IconPhrase + ".<br>Is it going to rain during the day? Probably Not.");
+            // };
+            // if(data2.DailyForecasts[0].Night.HasPrecipitation) {
+            //     weatherNight.html("Tonight: " + data2.DailyForecasts[0].Night.IconPhrase + ".<br>Is it going to rain tonight? Probably.");
+            // } else {
+            //     weatherNight.html("Tonight: " + data2.DailyForecasts[0].Night.IconPhrase + ".<br>Is it going to rain tonight? Probably Not.");
+            // };
+            //             var maxTemp = data2.DailyForecasts[0].Temperature.Maximum.Value;
+            // var minTemp = data2.DailyForecasts[0].Temperature.Minimum.Value;
+            // temperature.html("Maximum Temp: " + maxTemp + "°F<br>Minimum Temp: " + minTemp + "°F");
 
 
 
