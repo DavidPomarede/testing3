@@ -54,6 +54,9 @@ var humidity = $('#humidity');
 var pressure = $('#pressure');
 var windSpeed = $('#windSpeed');
 var windDir = $('#windDir');
+var uvIndex = $('#uvIndex');
+var uvIndex2 = $('#uvIndex2');
+var uvIndex3 = $('#uvIndex3');
 
 
 
@@ -207,11 +210,35 @@ wikiUrl2 = "https://en.wikipedia.org/w/api.php?action=opensearch&search="  + sea
 
             aqiMessage.text(data3.data.alert);
             $('#pm').text(data3.msg);
+            // pm.html(JSON.stringify(data3.data.aqiParams));
             pm.html("<br>Air Quality:<br>Particulate matter: " + data3.data.aqiParams[0].value);
             humidity.text("Humidity: " + data3.data.aqiParams[1].value);
             pressure.text("Pressure: " + data3.data.aqiParams[2].value);
             windSpeed.text("Wind Speed: " + data3.data.aqiParams[3].value);
             windDir.text("Wind Direction: " + data3.data.aqiParams[4].value);
+
+        })
+
+        
+    }).then(function(){$.ajax({
+        method: "GET",
+        // url: "https://cors-anywhere.herokuapp.com/https://dataservice.accuweather.com/forecasts/v1/daily/1day/" + zipCode + "?apikey=Hh3qVnjiiZZFlhLgskjnE1kxf4orP7uN",
+        url: "https://cors-anywhere.herokuapp.com/http://api.openweathermap.org/data/2.5/uvi/forecast?lat=" + latitude + "&lon=" + longitude + "&appid=0cd45b9194d49ecbc168d3cc2ab3902e",
+        // url: "https://cors-anywhere.herokuapp.com/https://api.accuweather.com/locations/v1/geoposition/search.json?q=" + latitude  + "," + longitude + "&apikey=Hh3qVnjiiZZFlhLgskjnE1kxf4orP7uN"
+    }).then(function(data6) {
+
+            console.log(data6);
+            console.log(data6[0].value);
+            console.log(data6[1].value);
+            console.log(data6[2].value);
+            var uvData = data6[0].value;
+            var uvData2 = data6[1].value;
+            var uvData3 = data6[2].value;
+
+
+            $('#uvIndex').html("UV Index: " + uvData);
+            uvIndex2.text("UV Index: " + uvData2);
+            uvIndex3.text("UV Index: " + uvData3);
 
         })
     });
