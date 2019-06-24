@@ -57,6 +57,7 @@ var windDir = $('#windDir');
 var uvIndex = $('#uvIndex');
 var uvIndex2 = $('#uvIndex2');
 var uvIndex3 = $('#uvIndex3');
+var addressDisplay = $('#addressDisplay');
 
 
 
@@ -92,6 +93,9 @@ wikiUrl2 = "https://en.wikipedia.org/w/api.php?action=opensearch&search="  + sea
             // wikiResults = data[2][0];
             zipCode = data.results[0].locations[0].postalCode;
             console.log(zipCode);
+            console.log("Address: " + data.results[0].providedLocation.location);
+            var givenAddress = data.results[0].providedLocation.location;
+            addressDisplay.html("<strong>" + givenAddress + "</strong>");
 
 
             weatherUrl = "https://cors-anywhere.herokuapp.com/http://dataservice.accuweather.com/forecasts/v1/daily/1day/" + zipCode + "?apikey=Hh3qVnjiiZZFlhLgskjnE1kxf4orP7uN";
@@ -241,6 +245,17 @@ wikiUrl2 = "https://en.wikipedia.org/w/api.php?action=opensearch&search="  + sea
             uvIndex3.text("UV Index: " + uvData3);
 
         })
+    }).then(function(){$.ajax({
+        method: "GET",
+        url: "https://cors-anywhere.herokuapp.com/http://api.openweathermap.org/data/2.5/uvi/forecast?lat=" + latitude + "&lon=" + longitude + "&appid=0cd45b9194d49ecbc168d3cc2ab3902e",
+    }).then(function(data7) {
+
+            console.log(data7);
+
+        })
+
+
+
     });
 
 
