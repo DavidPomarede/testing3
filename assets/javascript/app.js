@@ -21,6 +21,8 @@ var weatherNight = $('#weatherNight');
 var temperature = $('#temperature');
 var temperature2 = $('#temperature2');
 var temperature3 = $('#temperature3');
+
+var populationDisplay = $('#population');
 var aqiMessage = $('#aqiMessage');
 var pm = $('#pm');
 var humidity = $('#humidity');
@@ -62,10 +64,13 @@ wikiUrl = "https://open.mapquestapi.com/geocoding/v1/address?key=KL6bvb80lfLEE1Y
             addressDisplay.html("<strong>" + givenAddress + "</strong>");
             if (searchRefined2 == "") {
                 wikiSearch = searchRefined3;
-                console.log(wikiSearch);
+                console.log("wikiSearch: " + wikiSearch); 
             } else if (searchRefined3 == "") {
                 wikiSearch = searchRefined2;
-                console.log(wikiSearch);
+                console.log("wikiSearch: " + wikiSearch); 
+            } else if ((searchRefined2 == "")&&(searchRefined3 == "")) {
+                wikiSearch = givenAddress;
+                console.log("wikiSearch: " + wikiSearch); 
             };
             weatherUrl = "https://cors-anywhere.herokuapp.com/http://dataservice.accuweather.com/forecasts/v1/daily/1day/" + zipCode + "?apikey=Hh3qVnjiiZZFlhLgskjnE1kxf4orP7uN";                    
             // map widget
@@ -115,7 +120,7 @@ wikiUrl = "https://open.mapquestapi.com/geocoding/v1/address?key=KL6bvb80lfLEE1Y
             aqiMessage.text(data3.data.alert);
             $('#pm').text(data3.msg);
             // pm.html(JSON.stringify(data3.data.aqiParams));
-            pm.html("<br>Air Quality:<br>Particulate matter: " + data3.data.aqiParams[0].value);
+            pm.html("<br><strong>Air Quality:</strong><br>Particulate matter: " + data3.data.aqiParams[0].value);
             humidity.text("Humidity: " + data3.data.aqiParams[1].value);
             pressure.text("Pressure: " + data3.data.aqiParams[2].value);
             windSpeed.text("Wind Speed: " + data3.data.aqiParams[3].value);
@@ -137,12 +142,17 @@ wikiUrl = "https://open.mapquestapi.com/geocoding/v1/address?key=KL6bvb80lfLEE1Y
             uvIndex3.text("UV Index: " + uvData3);
 
         })
-    // }).then(function(){$.ajax({
-    //     method: "GET",
-    //     url: "https://cors-anywhere.herokuapp.com/http://api.openweathermap.org/data/2.5/uvi/forecast?lat=" + latitude + "&lon=" + longitude + "&appid=0cd45b9194d49ecbc168d3cc2ab3902e",
-    // }).then(function(data7) {
-    //         console.log(data7);
-    //     })
+    }).then(function(){$.ajax({
+        method: "GET",
+        url: "https://cors-anywhere.herokuapp.com/http://www.datasciencetoolkit.org/coordinates2statistics/" + latitude + "%2c" + longitude + "?statistics=population_density",
+    }).then(function(data7) {
+            console.log(data7);
+            console.log(data7[0].statistics.population_density.value);
+            var population = data7[0].statistics.population_density.value;
+            var popPerMile = Math.ceil(population / 0.6213712);
+            populationDisplay.html("<br><strong>Population Density:</strong> <br>" + popPerMile + " inhabitants per Sq. Mile");
+            console.log("population density: " + data7);
+        })
     }).then(function(){$.ajax({
         method: "GET",
         url: "https://en.wikipedia.org/w/api.php?action=opensearch&search="  + wikiSearch + "&format=json&origin=*",
@@ -169,3 +179,6 @@ wikiUrl = "https://open.mapquestapi.com/geocoding/v1/address?key=KL6bvb80lfLEE1Y
 //more stuff below
 
 $("#message").html("<h1>Travel Information</h1>");
+
+
+document.addEventListener("DOMContentLoaded",loadPage);
