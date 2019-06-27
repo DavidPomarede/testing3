@@ -8,6 +8,16 @@ body {
   background: -webkit-radial-gradient(center, ellipse cover, #ffffff 0%,#f2efd9 100%);
 }
 
+.navbar {
+    margin-top: 90px; margin-left: 450px; width: 2000px;
+}
+
+#heading {
+    font-size: 15px;
+    font-weight: bold;
+    margin-top: 60px; margin-right: 400px; width: 3000px; padding: 5px;
+}
+
 @-webkit-keyframes rotate-right {
   from { 
     -webkit-transform: rotate(0deg);
