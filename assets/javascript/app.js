@@ -1,3 +1,9 @@
+$( document ).ready(function() {
+
+
+
+
+
 var latitude;
 var longitude;
 var searchTerm;
@@ -34,9 +40,14 @@ var uvIndex2 = $('#uvIndex2');
 var uvIndex3 = $('#uvIndex3');
 var addressDisplay = $('#addressDisplay');
 
-$('#submit').on("click", function(){ 
+var wikiSuccess = true;
+
+
+
+$('#submit').click(function(){ 
 searchTerm = $('#state');
 searchRefined = searchTerm[0].value;
+wikiSuccess = true;
 
 wikiUrl = "https://open.mapquestapi.com/geocoding/v1/address?key=KL6bvb80lfLEE1Ys5TjUKyu6Be7gdXLX&location="  + searchRefined;
 
@@ -46,7 +57,13 @@ wikiUrl = "https://open.mapquestapi.com/geocoding/v1/address?key=KL6bvb80lfLEE1Y
         contentType: "application/json; charset=utf-8",
         async: true,
         dataType: "json",
-      }).then(function(data) {
+        error: function (request, status, error) {
+            alert(request.responseText);
+        }
+      }).then(function(data, success) {
+          console.log(success);
+          if(success) {
+            
             console.log(data);
             console.log(data.results[0].locations[0].latLng.lat);
             console.log(data.results[0].locations[0].latLng.lng);
@@ -73,23 +90,25 @@ wikiUrl = "https://open.mapquestapi.com/geocoding/v1/address?key=KL6bvb80lfLEE1Y
                 console.log("wikiSearch: " + wikiSearch); 
             };
             weatherUrl = "https://cors-anywhere.herokuapp.com/http://dataservice.accuweather.com/forecasts/v1/daily/1day/" + zipCode + "?apikey=Hh3qVnjiiZZFlhLgskjnE1kxf4orP7uN";                    
-            // map widget
-            var map = L.map('mapid', {
-                center: [latitude, longitude],
-                zoom: 15
-            });
-            L.tileLayer('https://{s}.tile.osm.org/{z}/{x}/{y}.png', {
-                attribution: '&copy; OpenStreetMap'
-            }).addTo(map);
-            // map popup label
-            var popup = L.popup()
-            .setLatLng([latitude, longitude])
-            .setContent("You are here")
-            .openOn(map);
+            console.log("WIKISEARCH: " + wikiSearch);
+            if (wikiSearch == "") {
+                wikiSearch = "error";
+                wikiSuccess = false;
+                addressDisplay.html("<strong>Please enter a valid address, city, postcode or place name.</strong>")
+                clearDivs();
+            }
+          } else {
+              return;
+          }
+
     }).then(function(){$.ajax({
         method: "GET",
         url: "https://cors-anywhere.herokuapp.com/http://api.openweathermap.org/data/2.5/forecast/?lat=" + latitude + "&lon=" + longitude + "&APPID=0cd45b9194d49ecbc168d3cc2ab3902e",
+        error: function (request, status, error) {
+            alert(request.responseText);
+        }
     }).then(function(data2) {
+        if(wikiSuccess) {
             console.log("weather: " + data2);
             console.log(data2);
             console.log(data2.list[0].weather[0].description);
@@ -100,6 +119,7 @@ wikiUrl = "https://open.mapquestapi.com/geocoding/v1/address?key=KL6bvb80lfLEE1Y
             temperature2.html("Temp: " + Math.ceil(((data2.list[8].main.temp - 273.15) * 1.8) + 32) + "°F");
             weatherDay3.html("The day after tomorrow: " + data2.list[16].weather[0].description);
             temperature3.html("Temp: " + Math.ceil(((data2.list[16].main.temp - 273.15) * 1.8) + 32) + "°F");
+        }
         })
     }).then(function(){$.ajax({
         method: "GET",
@@ -108,6 +128,7 @@ wikiUrl = "https://open.mapquestapi.com/geocoding/v1/address?key=KL6bvb80lfLEE1Y
             pm.text("Error: There is no air quality information available for that area. You are too far away from a measurement station (500km+).")
         }
     }).then(function(data3) {
+        if(wikiSuccess) {
             console.log("weather: " + data3);
             console.log(data3);
             console.log(data3.msg);
@@ -125,11 +146,17 @@ wikiUrl = "https://open.mapquestapi.com/geocoding/v1/address?key=KL6bvb80lfLEE1Y
             pressure.text("Pressure: " + data3.data.aqiParams[2].value);
             windSpeed.text("Wind Speed: " + data3.data.aqiParams[3].value);
             windDir.text("Wind Direction: " + data3.data.aqiParams[4].value);
+        } else {
+            return;
+        }
         })       
     }).then(function(){$.ajax({
         method: "GET",
         url: "https://cors-anywhere.herokuapp.com/http://api.openweathermap.org/data/2.5/uvi/forecast?lat=" + latitude + "&lon=" + longitude + "&appid=0cd45b9194d49ecbc168d3cc2ab3902e",
-    }).then(function(data6) {
+        error: function (request, status, error) {
+            alert(request.responseText);
+        }    }).then(function(data6) {
+            if(wikiSuccess) {
             console.log(data6);
             console.log(data6[0].value);
             console.log(data6[1].value);
@@ -140,23 +167,36 @@ wikiUrl = "https://open.mapquestapi.com/geocoding/v1/address?key=KL6bvb80lfLEE1Y
             $('#uvIndex').html("UV Index: " + uvData);
             uvIndex2.text("UV Index: " + uvData2);
             uvIndex3.text("UV Index: " + uvData3);
-
+            } else {
+                return;
+            }
         })
     }).then(function(){$.ajax({
         method: "GET",
         url: "https://cors-anywhere.herokuapp.com/http://www.datasciencetoolkit.org/coordinates2statistics/" + latitude + "%2c" + longitude + "?statistics=population_density",
+        error: function (request, status, error) {
+            alert(request.responseText);
+        }
     }).then(function(data7) {
+        if(wikiSuccess) {
             console.log(data7);
             console.log(data7[0].statistics.population_density.value);
             var population = data7[0].statistics.population_density.value;
             var popPerMile = Math.ceil(population / 0.6213712);
             populationDisplay.html("<br><strong>Population Density:</strong> <br>" + popPerMile + " inhabitants per Sq. Mile");
             console.log("population density: " + data7);
+        }
         })
     }).then(function(){$.ajax({
         method: "GET",
         url: "https://en.wikipedia.org/w/api.php?action=opensearch&search="  + wikiSearch + "&format=json&origin=*",
-    }).then(function(data8) {
+        error: function (request, status, error) {
+            alert(request.responseText);
+        }
+    }).then(function(data8, success) {
+        console.log(success);
+        console.log("DATA 8 " + data8);
+        if(wikiSuccess) {
             console.log(data8);
             console.log("wikipedia: " + data8[2][1]);
             console.log("wikipedia: " + data8[2][0]);
@@ -168,17 +208,74 @@ wikiUrl = "https://open.mapquestapi.com/geocoding/v1/address?key=KL6bvb80lfLEE1Y
             var stuffToQr = wikiData;
             var getUrl = "https://api.qrserver.com/v1/create-qr-code/?data=" + stuffToQr + "!&size=100x100";
             QRimg.attr('src', getUrl);
+            // map widget
+            document.getElementById('mapid').innerHTML = "<div id='map' style='width: 100%; height: 100%;'></div>";
+            var map = L.map('map', {
+                center: [latitude, longitude],
+                zoom: 15
+            });
+            L.tileLayer('https://{s}.tile.osm.org/{z}/{x}/{y}.png', {
+                attribution: '&copy; OpenStreetMap'
+            }).addTo(map);
+            // map popup label
+            console.log("5th lat" + latitude)
+            var popup = L.popup()
+            .setLatLng([latitude, longitude])
+            .setContent("You are here")
+            .openOn(map);
+                        } else {
+                            return;
+                        };
         })
     });
+
+
 
 // trying to reset the search here:
 	searchTerm = $('#state');
   searchTerm[0].value = '';
 });
 
+
+
+var clearDivs = function() {
+    weatherDay.empty();
+    weatherDay2.empty();
+    weatherDay3.empty();
+    weatherNight.empty();
+    temperature.empty();
+    temperature2.empty();
+    temperature3.empty();
+    populationDisplay.empty();
+    aqiMessage.empty();
+    pm.empty();
+    humidity.empty();
+    pressure.empty();
+    windSpeed.empty();
+    windDir.empty();
+    uvIndex.empty();
+    uvIndex2.empty();
+    uvIndex3.empty();
+    $('#mapid').empty();
+    $('#wikiInfo').empty();
+    QRimg.empty();
+    $('#qrstuff').empty();
+    // addressDisplay.clear();
+};
+
 //more stuff below
 
 $("#message").html("<h1>Travel Information</h1>");
 
 
-document.addEventListener("DOMContentLoaded",loadPage);
+// document.addEventListener("DOMContentLoaded",loadPage);
+
+document.addEventListener("keydown", function(event) {
+    if (event.key === "Enter") {
+        console.log("hi")
+        $('#submit').click()
+        // Do more work
+    }
+ });
+
+});
