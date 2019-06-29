@@ -39,7 +39,10 @@ $( document ).ready(function() {
     var sunrise = $('#sunrise');
     var sunset = $('#sunset');
     var moon = $('#moon');
-    
+
+    var events = $('#events');
+    var recent = $('#recent');
+
     var wikiSuccess = true;
     
     
@@ -75,11 +78,28 @@ $( document ).ready(function() {
     var moon5;
     
     var offset;
+
+    var searches = [];
     
     
     $('#submit').click(function(){ 
     searchTerm = $('#state');
     searchRefined = searchTerm[0].value;
+
+    searches.push(searchRefined);
+    console.log(searches);
+
+    recent.empty();    
+    for(j=0; j<searches.length; j++){
+        var searchListItem = $('<p>');
+        searchListItem.text(searches[j]).attr('class', 'card-text');
+
+        recent.append(searchListItem);
+    };
+
+
+
+
     wikiSuccess = true;
     
     
@@ -394,55 +414,102 @@ $( document ).ready(function() {
         };
         })
     
-    // STORMGLASS SUNRISE/ SUNSET
+    // // STORMGLASS SUNRISE/ SUNSET
     
-        // }).then(function(){$.ajax({
-        //     method: "GET",
-        //     url: "https://api.stormglass.io/v1/astronomy/point?lat=" + latitude + "&lng=" + longitude + "&numberOfDays=5",
-        //     beforeSend: function(request2) {
-        //         request2.setRequestHeader("authorization", "5351a592-9714-11e9-afdd-0242ac130004-5351a696-9714-11e9-afdd-0242ac130004");
-        //       },
-        //     error: function (request, status, error) {
-        //         alert("6: " + request.responseText + latitude + longitude);
-        //         console.log("THIS: " + this)
-        //     },
-        //     // success: function (data10) {
-        //     //     console.log("data10: "+ data10)
-        //     // }
-        // }).then(function(data9, success) {
+    //     }).then(function(){$.ajax({
+    //         method: "GET",
+    //         url: "https://cors-anywhere.herokuapp.com/https://www.eventbriteapi.com/v3/events/search?location.longitude=-123.11236500000001&location.latitude=49.279974&expand=venue&client_id=LKOQIDY3WZYVP22KGG",
+    //         // beforeSend: function(request) {
+    //         //     request.setRequestHeader("Authorization: Bearer LKOQIDY3WZYVP22KGG");
+    //         //   },
+    //         error: function (request, status, error) {
+    //             console.log("eventbrite error: " + request);
+    //             console.log("THIS: " + this)
+    //             console.log(error);
+    //         },
+    //         success: function (data12) {
+    //             console.log("data12: "+ data12)
+    //         }
+    //     }).then(function(data12, success) {
+    //         console.log('EVENTBRITE SUCCESS')
+    //         console.log(data12);
+    //         if(wikiSuccess) {
+    //             console.log("StormGlass: ");
+    //             console.log(data12);
+
     
+    //                         } else {
+    //                             return;
+    //                         };
+    //         })
     
-        //     if(wikiSuccess) {
-        //         console.log("StormGlass: ");
-        //         console.log(data9);
-        //         console.log("offset2: " + offset);
-        //         sunrise1 =  moment.utc(data9.days[0].sunrise).utcOffset(offset).format("hh:mm A");
-        //         sunrise2 = moment(data9.days[1].sunrise).format("hh:mm A");
-        //         sunrise3 = moment(data9.days[2].sunrise).format("hh:mm A");
-        //         sunrise4 = moment(data9.days[3].sunrise).format("hh:mm A");
-        //         sunrise5 = moment(data9.days[4].sunrise).format("hh:mm A");
-        //         sunset1 = moment(data9.days[0].sunset).format("hh:mm A");
-        //         sunset2 = moment(data9.days[1].sunset).format("hh:mm A");
-        //         sunset3 = moment(data9.days[2].sunset).format("hh:mm A");
-        //         sunset4 = moment(data9.days[3].sunset).format("hh:mm A");
-        //         sunset5 = moment(data9.days[4].sunset).format("hh:mm A");
-        //         moon1 = data9.days[0].moonPhase.current.text;
-        //         moon2 = data9.days[1].moonPhase.current.text;
-        //         moon3 = data9.days[2].moonPhase.current.text;
-        //         moon4 = data9.days[3].moonPhase.current.text;
-        //         moon5 = data9.days[4].moonPhase.current.text;
+    var settings = {
+        "async": true,
+        "crossDomain": true,
+        "url": "https://cors-anywhere.herokuapp.com/https://www.eventbriteapi.com/v3/events/search/?q=outdoor&location.address=" + wikiSearch,
+        "method": "GET",
+        "headers": {
+          "Authorization": "Bearer JYTLQXWT72FLMYNCZ25W",
+       
+          "Accept": "*/*",
+          "Cache-Control": "no-cache",
+          "Postman-Token": "a2c9afb5-0f2a-464a-a11d-e1775353abdc,72f698c3-f3bc-4a69-82d0-53ac8b22564e",
+       
+       
+          "cache-control": "no-cache"
+        }
+       }
+       
+       $.ajax(settings).done(function (response) {
+        console.log("Eventbrite222: " + response);
+        console.log("*********************************");
+        console.log(response);
+        console.log(response.events[0].logo.url);
+        console.log(response.events[0].description.html);
+        console.log(response.events[0].name.text);
+        events.empty();
+        var box = function() {
+            for (i=0; i<5; i++){
+                var container = $('<div>');
+                container.attr('class', 'card bg-light mb-3').attr('style', 'max-width: 18rem;');
+                var title = $('<div>');
+                title.attr('class', 'card-header').text(response.events[i].name.text);
+                console.log(response.events[i].name.text);
+                container.append(title);
+                var cardBody = $('<div>');
+                cardBody.attr('class', 'card-body');
+                container.append(cardBody);
+                var imgP = $('<p>');
+                imgP.attr('class', 'card-text');
+                var img = $('<img>');
+                img.attr('style', 'width: 70%').attr('style', 'max-width: 16rem;');
+                imgP.append(img);
+                cardBody.append(imgP);
+                var text = $('<p>');
+                img.attr('src', response.events[i].logo.url);
+                console.log(response.events[i].logo.url);
+                text.html(response.events[i].description.html).attr('class', 'card-text');
+                console.log(response.events[i].description.html);
+                cardBody.append(text);
+                events.append(container);
+            }
+        };
+        box();
+       
+       });
     
-        //         sunrise.html("Sunrise: " + sunrise1);
-        //         sunset.html("Sunset: " + sunset1);
-        //         moon.html("Moonphase: " + moon1);
-    
-        //                     } else {
-        //                         return;
-        //                     };
-        //     })
-    
-    
-    
+
+
+
+
+
+
+
+
+
+
+
+
         });
     
     
