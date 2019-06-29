@@ -36,7 +36,10 @@
 
   	<div class="form-group">
     		<label for="input1">Where are you travelling to?</label>
-    		<input type="text" class="form-control" id="state" placeholder="1234 Main St.">
+        <input type="text" class="form-control" id="state" placeholder="1234 Main St.">
+        <br>
+        <button class="btn btn-outline-primary float-right" id="submit">Search</button>
+        <br><br>
   	</div>
   	<!-- <div class="form-group">
     		<label for="input2">Brewery Name?</label>
@@ -46,17 +49,37 @@
 	<select class="form-control" id="select1"></select>
 	<p>Type:</p>
         <select class="form-control" id="select2"></select> -->
-
-  <div id="addressDisplay"></div>
+        <div id="addressDisplay"></div>
+        <div class="btn-group btn-group-toggle" data-toggle="buttons">
+          <label class="btn btn-secondary active">
+            <input type="radio" name="options" id="option1" autocomplete="off" checked> Today 
+          </label>
+          <label class="btn btn-secondary">
+            <input type="radio" name="options" id="option2" autocomplete="off"> Day 2 
+          </label>
+          <label class="btn btn-secondary">
+            <input type="radio" name="options" id="option3" autocomplete="off"> Day 3
+          </label>
+          <label class="btn btn-secondary">
+            <input type="radio" name="options" id="option4" autocomplete="off"> Day 4 
+          </label>
+          <label class="btn btn-secondary">
+            <input type="radio" name="options" id="option5" autocomplete="off"> Day 5 
+          </label>
+        </div>
+<br><br>
   <div id="weatherDay"></div>
   <div id="temperature"></div>
   <div id="uvIndex"></div>
-  <div id="weatherDay2"></div>
+  <div id="sunrise"></div>
+  <div id="sunset"></div>
+  <div id="moon"></div>
+  <!-- <div id="weatherDay2"></div>
   <div id="temperature2"></div>
   <div id="uvIndex2"></div>
   <div id="weatherDay3"></div>
   <div id="temperature3"></div>
-  <div id="uvIndex3"></div>
+  <div id="uvIndex3"></div> -->
   <!-- <div id="weatherNight"></div> -->
 
 
@@ -75,7 +98,7 @@
 	</div>
       <div class="col col-lg-4">
         <br>
-      <button class="btn btn-outline-primary" id="submit">Search</button>
+
       <br><br>
 
       <div id="mapid"></div>
@@ -103,5 +126,6 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
     <script src="assets/javascript/app.js"></script>
+    <script src="https://cdn.jsdelivr.net/momentjs/2.12.0/moment.min.js"></script>
   </body>
 </html>
