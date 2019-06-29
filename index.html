@@ -3,63 +3,200 @@
   <head>
     	<meta charset="utf-8">
     	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
-    	<link rel="stylesheet" href="assets/css/style.css">
+      <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+      <link href="https://fonts.googleapis.com/css?family=B612+Mono&display=swap" rel="stylesheet">
+      <link rel="stylesheet" href="assets/css/style.css">
 	 <link rel="stylesheet" href="https://unpkg.com/leaflet@1.5.1/dist/leaflet.css"
    integrity="sha512-xwE/Az9zrjBIphAcBb3F6JVqxf46+CDLwfLMHloNu6KEQCAWi6HcDUbeOfBIptF7tcCzusKFjFw2yuvEpDL9wQ=="
    crossorigin=""/>
 
-
-    <title>Project X</title>
+    <!--test-->
+    <title>Totally Rad Travel Stuff</title>
   </head>
-  <body>
-  <br><br><br>
+  <body>  
+  <br><br>      	<br>
   <div class="container">
-    <div class="row justify-content-md-center">
-      <div class="col col-lg-2">
-        Super Brewery Finder
-      </div>
+    <div class="row justify-content-md-left">
+      <!-- <div class="col col-lg-2">
+
+      </div> -->
       <div class="col-md-auto" id="message"></div>
       <div class="col col-lg-2">
-      GastroPubs, Brewpubs, Breweries
+          Weather Information and travel health
+
+
+
+
       </div>
+      <div class="col col-lg-2">
+
+
+
+
+
+
+      </div>
+
+
+
+
+
     </div>
   </div>   
 
   <div class="container">
-    <div class="row justify-content-md-center">
-      <div class="col col-lg-2">
-      	<div id="mapid"></div>
-      </div>
-      <div class="col-md-auto" id="message">
-	<form>
+    <div class="row justify-content-md-left">
+      <!-- <div class="col col-lg-2">
+
+      </div> -->
+      <div class="col-md-auto" id="message2">
+
   	<div class="form-group">
-    		<label for="input1">What state?</label>
-    		<input type="text" class="form-control" id="state" placeholder="Example input">
+    		<label for="input1">Where are you travelling to?</label>
+        <input type="text" class="form-control" id="state" placeholder="1234 Main St.">
+        <br>
+        <button class="btn btn-outline-primary float-right" id="submit">Search</button>
+        <br><br>
   	</div>
-  	<div class="form-group">
+  	<!-- <div class="form-group">
     		<label for="input2">Brewery Name?</label>
     		<input type="text" class="form-control" id="brewery" placeholder="Another input">
 	</div>
 	<p>Options:</p>
 	<select class="form-control" id="select1"></select>
 	<p>Type:</p>
-        <select class="form-control" id="select2"></select>
-	</form>
+        <select class="form-control" id="select2"></select> -->
+        <div id="addressDisplay"></div>
+        <div class="btn-group btn-group-toggle" data-toggle="buttons">
+          <label class="btn btn-secondary active">
+            <input type="radio" name="options" id="option1" autocomplete="off" checked> Today 
+          </label>
+          <label class="btn btn-secondary">
+            <input type="radio" name="options" id="option2" autocomplete="off"> Day 2 
+          </label>
+          <label class="btn btn-secondary">
+            <input type="radio" name="options" id="option3" autocomplete="off"> Day 3
+          </label>
+          <label class="btn btn-secondary">
+            <input type="radio" name="options" id="option4" autocomplete="off"> Day 4 
+          </label>
+          <label class="btn btn-secondary">
+            <input type="radio" name="options" id="option5" autocomplete="off"> Day 5 
+          </label>
+        </div>
+<br><br>
+  <div id="weatherDay"></div>
+  <div id="temperature"></div>
+  <div id="uvIndex"></div>
+  <div id="sunrise"></div>
+  <div id="sunset"></div>
+  <div id="moon"></div>
+  <!-- <div id="weatherDay2"></div>
+  <div id="temperature2"></div>
+  <div id="uvIndex2"></div>
+  <div id="weatherDay3"></div>
+  <div id="temperature3"></div>
+  <div id="uvIndex3"></div> -->
+  <!-- <div id="weatherNight"></div> -->
+
+
+
+  <hr>
+  <div id="population"></div>
+  <div id="pm"></div>
+  <div id="humidity"></div>
+  <div id="pressure"></div>
+  <div id="windSpeed"></div>
+  <div id="windDir"></div>
+
+
+
+<!-- first commit on garrett2-->
 	</div>
-      <div class="col col-lg-2">
-      <button class="btn btn-outline-primary" id="submit">Search</button>
-      <br><br>
-      <div id="qrstuff"></div>
+
+
+      <div class="col col-lg-3">
+
+
+
+
+
+
+
+
+<br><br><br>
+      <div class="card bg-light mb-3" style="max-width: 25rem;">
+          <div class="card-header">Recent Searches</div>
+          <div class="card-body" id="recent">
+            <!-- <p class="card-text">New York, NY</p>
+            <p class="card-text">Indonesia</p> -->
+          </div>
+
+        </div>
+        <br><strong>Local Events:</strong>
+        <div id="events"></div>
       </div>
+
+
+  <!-- hello -->
+  <div class="col col-lg-4">
+      <br>
+  
+    <br><br>
+  
+    <div id="mapid"></div>
+    <div id="aqiMessage"></div>
+    <hr>
+    <div id="wikiInfo"></div>
+    <br>
+    <div id="qrstuff"></div>
     </div>
+  <!-- hello -->
+  
+
+
+      </div>
+
+
+
+
+    </div>
+
+
+
+
     <div class="row justify-content-md-center">
+
+
+
       <div class="col col-lg-2">
+
+
+
 	<div id="results"><div>
  	
-	</div>
-	</div>
   </div>
+
+
+  </div>
+  
+
+
+
+
+  </div>
+
+
+
+
+
+
+
+  </div>
+
+
+
+</div>
 
 
 
@@ -70,5 +207,6 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
     <script src="assets/javascript/app.js"></script>
+    <script src="https://cdn.jsdelivr.net/momentjs/2.12.0/moment.min.js"></script>
   </body>
 </html>
