@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 
 /*
     colors:
@@ -56,6 +57,12 @@ body {
     font-size: 19px;
     text-align: center;
     color:#3c415e;
+=======
+h1 {
+    padding-left: 2rem;
+    padding-right: 2rem;
+    font-family: 'DM Serif Display', serif;
+>>>>>>> 97083651d554018176aad20d96474d5e47e37c3e
 }
 
 #mapid { 
@@ -64,8 +71,27 @@ body {
     width: 280px; 
 }
 
+<<<<<<< HEAD
 .col-sm{
     background-color: #dfe2e256;
+=======
+body {
+    font-family: 'B612 Mono', monospace;
+    background-color: #99CCCC;
+}
+
+.jumbotron {
+    /* background-color: #0191C8; */
+    background-image: url('../images/grass.png');
+}
+
+h3 {
+    color: white;
+}
+
+p {
+    font-family: 'Raleway', sans-serif;
+>>>>>>> 97083651d554018176aad20d96474d5e47e37c3e
 }
 
 #state{

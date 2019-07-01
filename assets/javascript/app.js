@@ -1,20 +1,19 @@
+document.body.style.backgroundImage = "url('assets/images/trees.png')";
+
+
 $( document ).ready(function() {
 
 
     var latitude;
     var longitude;
     var searchTerm;
-    // var searchTerm2;
     var searchRefined;
     var searchRefined2;
     var searchRefined3;
     var wikiSearch;
-    // var wikiResults;
     var QRimg = $('<img>');
     $('#qrstuff').append(QRimg);
     var zipCode;
-    // var weatherUrl;
-    // var pollutionUrl;
     var wikiUrl;
     var weatherDay = $('#weatherDay');
     var weatherDay2 = $('#weatherDay2');
@@ -22,8 +21,7 @@ $( document ).ready(function() {
     var weatherNight = $('#weatherNight');
     var temperature = $('#temperature');
     var temperature2 = $('#temperature2');
-    var temperature3 = $('#temperature3');
-    
+    var temperature3 = $('#temperature3');   
     var populationDisplay = $('#population');
     var aqiMessage = $('#aqiMessage');
     var pm = $('#pm');
@@ -35,52 +33,47 @@ $( document ).ready(function() {
     var uvIndex2 = $('#uvIndex2');
     var uvIndex3 = $('#uvIndex3');
     var addressDisplay = $('#addressDisplay');
-    
-    var sunrise = $('#sunrise');
-    var sunset = $('#sunset');
-    var moon = $('#moon');
-
+    // var weatherButtons = $('#weatherButtons');
+    var recentBox = $('#recentBox');
+    // var sunrise = $('#sunrise');
+    // var sunset = $('#sunset');
+    // var moon = $('#moon');
     var events = $('#events');
-    var recent = $('#recent');
-
+    // var recent = $('#recent');
     var wikiSuccess = true;
-    
-    
-    var weatherMsg1;
-    var weatherMsg2;
-    var weatherMsg3;
-    var weatherMsg4;
-    var weatherMsg5;
-    var weatherTemp1;
-    var weatherTemp2;
-    var weatherTemp3;
-    var weatherTemp4;
-    var weatherTemp5;
-    var UVindex1;
-    var UVindex2;
-    var UVindex3;
-    var UVindex4;
-    var UVindex5;
-    var sunrise1;
-    var sunrise2;
-    var sunrise3;
-    var sunrise4;
-    var sunrise5;
-    var sunset1;
-    var sunset2;
-    var sunset3;
-    var sunset4;
-    var sunset5;
-    var moon1;
-    var moon2;
-    var moon3;
-    var moon4;
-    var moon5;
+    // var weatherMsg1;
+    // var weatherMsg2;
+    // var weatherMsg3;
+    // var weatherMsg4;
+    // var weatherMsg5;
+    // var weatherTemp1;
+    // var weatherTemp2;
+    // var weatherTemp3;
+    // var weatherTemp4;
+    // var weatherTemp5;
+    // var UVindex1;
+    // var UVindex2;
+    // var UVindex3;
+    // var UVindex4;
+    // var UVindex5;
+    // var sunrise1;
+    // var sunrise2;
+    // var sunrise3;
+    // var sunrise4;
+    // var sunrise5;
+    // var sunset1;
+    // var sunset2;
+    // var sunset3;
+    // var sunset4;
+    // var sunset5;
+    // var moon1;
+    // var moon2;
+    // var moon3;
+    // var moon4;
+    // var moon5;
     
     var offset;
-
     var searches = [];
-    
     
     $('#submit').click(function(){ 
     searchTerm = $('#state');
@@ -89,13 +82,69 @@ $( document ).ready(function() {
     searches.push(searchRefined);
     console.log(searches);
 
-    recent.empty();    
+    var eventTitle = $('#eventTitle');
+    eventTitle.html("<strong>Local Events:</strong>");
+
+
+    recentBox.empty();
+    var recentCard = $('<div>');
+    recentCard.attr('class', 'card bg-light mb-3').attr('style', 'max-width: 25rem;');
+    var recentCardHead = $('<div>');
+    var recentCardBody = $('<div>');
+    recentCardHead.attr('class', 'card-header').text('Recent Searches');
+    recentCardBody.attr('class', 'card-body').attr('id', 'recent');
+    recentCard.append(recentCardHead);
+    recentCard.append(recentCardBody);
+
+    recentBox.append(recentCard);
+
+    
+    recentCardBody.empty();    
     for(j=0; j<searches.length; j++){
         var searchListItem = $('<p>');
         searchListItem.text(searches[j]).attr('class', 'card-text');
 
-        recent.append(searchListItem);
+        recentCardBody.append(searchListItem);
     };
+
+
+
+    
+        // recentCardBody.append(searches);
+    // var label1 = $('<label>');
+    // label1.attr('class', 'btn btn-secondary active');
+    // var radio1 = $('<input>');
+    // radio1.attr('type', 'radio').attr('name', 'options').attr('id', 'option1').attr('autocomplete', 'off').attr('checked');
+    // radio1.html('Today');
+    // label1.append(radio1);
+    // weatherButtons.append(label1);
+    // var label2 = $('<label>');
+    // label2.attr('class', 'btn btn-secondary active');
+    // var radio2 = $('<input>');
+    // radio2.attr('type', 'radio').attr('name', 'options').attr('id', 'option2').attr('autocomplete', 'off').attr('checked');
+    // radio2.html('Today');
+    // label2.append(radio1);
+    // weatherButtons.append(label2);
+    // for(k=1;k<6;k++){
+    //     var label = $('<label>');
+    //     label.attr('class', 'btn btn-secondary active');
+    //     var radio = $('<input>');
+    //     radio.attr('type', 'radio').attr('name', 'options').attr('id', 'option'+ [k]).attr('autocomplete', 'off').attr('checked');
+    //     radio.text('Today');
+    //     label.append(radio);
+    //     weatherButtons.append(label);
+    // };
+
+
+
+
+
+
+    addressDisplay.append();
+
+
+
+
 
 
 
@@ -139,6 +188,8 @@ $( document ).ready(function() {
                     wikiSearch = searchRefined2;
                 } else if ((searchRefined2 == "")&&(searchRefined3 == "")) {
                     wikiSearch = givenAddress;
+                } else {
+                    wikiSearch = givenAddress;
                 };
                 weatherUrl = "https://cors-anywhere.herokuapp.com/http://dataservice.accuweather.com/forecasts/v1/daily/1day/" + zipCode + "?apikey=Hh3qVnjiiZZFlhLgskjnE1kxf4orP7uN";                    
                 console.log("WIKISEARCH: " + wikiSearch);
@@ -156,25 +207,25 @@ $( document ).ready(function() {
     
     // // TIMEZONE INFO
     
-    }).then(function(){$.ajax({
-        method: "GET",
-        url: "http://api.timezonedb.com/v2.1/get-time-zone?key=O6FIVUVSCHY5&format=json&by=position&lat=" + latitude + "&lng=" + longitude,
-        error: function (request, status, error) {
-            console.log("5: " + request.responseText);
-        }
-    }).then(function(data10, success) {
+    // }).then(function(){$.ajax({
+    //     method: "GET",
+    //     url: "http://api.timezonedb.com/v2.1/get-time-zone?key=O6FIVUVSCHY5&format=json&by=position&lat=" + latitude + "&lng=" + longitude,
+    //     error: function (request, status, error) {
+    //         console.log("5: " + request.responseText);
+    //     }
+    // }).then(function(data10, success) {
     
     
-        if(wikiSuccess) {
-            console.log("Timezone data ");
-            console.log(data10);
-            console.log(data10.gmtOffset);
-            offset = (data10.gmtOffset / 60) / 60;
-            console.log("offset: " + offset);
-        } else {
-            return;
-        };
-        })
+    //     if(wikiSuccess) {
+    //         console.log("Timezone data ");
+    //         console.log(data10);
+    //         console.log(data10.gmtOffset);
+    //         offset = (data10.gmtOffset / 60) / 60;
+    //         console.log("offset: " + offset);
+    //     } else {
+    //         return;
+    //     };
+    //     })
     
     
     
@@ -184,7 +235,7 @@ $( document ).ready(function() {
     
         }).then(function(){$.ajax({
             method: "GET",
-            url: "https://cors-anywhere.herokuapp.com/http://api.openweathermap.org/data/2.5/forecast/?lat=" + latitude + "&lon=" + longitude + "&APPID=0cd45b9194d49ecbc168d3cc2ab3902e",
+            url: "https://api.openweathermap.org/data/2.5/forecast/?lat=" + latitude + "&lon=" + longitude + "&APPID=0cd45b9194d49ecbc168d3cc2ab3902e",
             error: function (request, status, error) {
                 console.log("2: " + request.responseText);
             }
@@ -192,11 +243,11 @@ $( document ).ready(function() {
             if(wikiSuccess) {
                 console.log("Open Weather: ");
                 console.log(data2);
-                weatherDay.html("Today: " + data2.list[0].weather[0].description);
+                weatherDay.html("<br><strong>Today:</strong> " + data2.list[0].weather[0].description);
                 temperature.html("Temp: " + Math.ceil(((data2.list[0].main.temp - 273.15) * 1.8) + 32) + "°F");
-                weatherDay2.html("Tomorrow: " + data2.list[8].weather[0].description);
+                weatherDay2.html("<strong>Tomorrow:</strong> " + data2.list[8].weather[0].description);
                 temperature2.html("Temp: " + Math.ceil(((data2.list[8].main.temp - 273.15) * 1.8) + 32) + "°F");
-                weatherDay3.html("The day after tomorrow: " + data2.list[16].weather[0].description);
+                weatherDay3.html("<strong>The day after tomorrow:</strong> " + data2.list[16].weather[0].description);
                 temperature3.html("Temp: " + Math.ceil(((data2.list[16].main.temp - 273.15) * 1.8) + 32) + "°F");
                 
                 weatherMsg1 = data2.list[0].weather[0].description;
@@ -299,7 +350,7 @@ $( document ).ready(function() {
                 var wikiInfo = $('#wikiInfo');
                 var wikiData = data8[2][0] + data8[2][1];
                 var wikiData2 = data8[3][0];
-                wikiInfo.text(wikiData);
+                wikiInfo.html("<p><stong>Fun Facts about " + wikiSearch + ":</strong></p>" + wikiData);
                 var stuffToQr = wikiData;
                 var getUrl = "https://api.qrserver.com/v1/create-qr-code/?data=" + stuffToQr + "!&size=100x100";
                 QRimg.attr('src', getUrl);
@@ -309,7 +360,7 @@ $( document ).ready(function() {
                     center: [latitude, longitude],
                     zoom: 15
                 });
-                L.tileLayer('https://{s}.tile.osm.org/{z}/{x}/{y}.png', {
+                L.tileLayer('http://{s}.tile.osm.org/{z}/{x}/{y}.png', {
                     attribution: '&copy; OpenStreetMap'
                 }).addTo(map);
                 // map popup label
@@ -328,91 +379,91 @@ $( document ).ready(function() {
     // sunrise/sunset times
     
     // today
-    }).then(function(){$.ajax({
-        method: "GET",
-        url: "https://cors-anywhere.herokuapp.com/https://api.sunrise-sunset.org/json?lat=" + latitude + "&lng=" + longitude + "&date=" + today,
-        error: function (request, status, error) {
-            console.log("6: " + request.responseText);
-        }
-    }).then(function(data11, success) {
-        if(wikiSuccess) {
-            console.log("Sunrise/sunset ");
-            console.log(data11); 
-            console.log(data11.results.sunrise);
-            console.log(data11.results.sunset);
-            console.log("making sure offset works " + offset);
-            var sunriseDate1 = today + " " + data11.results.sunrise;
-            console.log(moment.utc(sunriseDate1, "YYYY-MM-DD HH:MM:SS A").add(4, 'h'));
-            console.log(moment(sunriseDate1).add(-4, "Hours"));
-        } else {
-            return;
-        };
-        })
+    // }).then(function(){$.ajax({
+    //     method: "GET",
+    //     url: "https://cors-anywhere.herokuapp.com/https://api.sunrise-sunset.org/json?lat=" + latitude + "&lng=" + longitude + "&date=" + today,
+    //     error: function (request, status, error) {
+    //         console.log("6: " + request.responseText);
+    //     }
+    // }).then(function(data11, success) {
+    //     if(wikiSuccess) {
+    //         console.log("Sunrise/sunset ");
+    //         console.log(data11); 
+    //         console.log(data11.results.sunrise);
+    //         console.log(data11.results.sunset);
+    //         console.log("making sure offset works " + offset);
+    //         var sunriseDate1 = today + " " + data11.results.sunrise;
+    //         console.log(moment.utc(sunriseDate1, "YYYY-MM-DD HH:MM:SS A").add(4, 'h'));
+    //         console.log(moment(sunriseDate1).add(-4, "Hours"));
+    //     } else {
+    //         return;
+    //     };
+    //     })
     
-    // day2
-    }).then(function(){$.ajax({
-        method: "GET",
-        url: "https://cors-anywhere.herokuapp.com/https://api.sunrise-sunset.org/json?lat=" + latitude + "&lng=" + longitude + "&date=" + day2,
-        error: function (request, status, error) {
-            console.log("7: " + request.responseText);
-        }
-    }).then(function(data12, success) {
-        if(wikiSuccess) {
-            console.log("Sunrise/sunset ");
-            console.log(data12); 
-        } else {
-            return;
-        };
-        })
+    // // day2
+    // }).then(function(){$.ajax({
+    //     method: "GET",
+    //     url: "https://cors-anywhere.herokuapp.com/https://api.sunrise-sunset.org/json?lat=" + latitude + "&lng=" + longitude + "&date=" + day2,
+    //     error: function (request, status, error) {
+    //         console.log("7: " + request.responseText);
+    //     }
+    // }).then(function(data12, success) {
+    //     if(wikiSuccess) {
+    //         console.log("Sunrise/sunset ");
+    //         console.log(data12); 
+    //     } else {
+    //         return;
+    //     };
+    //     })
     
-    //day3
-    }).then(function(){$.ajax({
-        method: "GET",
-        url: "https://cors-anywhere.herokuapp.com/https://api.sunrise-sunset.org/json?lat=" + latitude + "&lng=" + longitude + "&date=" + day3,
-        error: function (request, status, error) {
-            console.log("8: " + request.responseText);
-        }
-    }).then(function(data13, success) {
-        if(wikiSuccess) {
-            console.log("Sunrise/sunset ");
-            console.log(data13); 
-        } else {
-            return;
-        };
-        })
+    // //day3
+    // }).then(function(){$.ajax({
+    //     method: "GET",
+    //     url: "https://cors-anywhere.herokuapp.com/https://api.sunrise-sunset.org/json?lat=" + latitude + "&lng=" + longitude + "&date=" + day3,
+    //     error: function (request, status, error) {
+    //         console.log("8: " + request.responseText);
+    //     }
+    // }).then(function(data13, success) {
+    //     if(wikiSuccess) {
+    //         console.log("Sunrise/sunset ");
+    //         console.log(data13); 
+    //     } else {
+    //         return;
+    //     };
+    //     })
     
     
-    //day4
-    }).then(function(){$.ajax({
-        method: "GET",
-        url: "https://cors-anywhere.herokuapp.com/https://api.sunrise-sunset.org/json?lat=" + latitude + "&lng=" + longitude + "&date=" + day4,
-        error: function (request, status, error) {
-            console.log("9: " + request.responseText);
-        }
-    }).then(function(data14, success) {
-        if(wikiSuccess) {
-            console.log("Sunrise/sunset ");
-            console.log(data14); 
-        } else {
-            return;
-        };
-        })
+    // //day4
+    // }).then(function(){$.ajax({
+    //     method: "GET",
+    //     url: "https://cors-anywhere.herokuapp.com/https://api.sunrise-sunset.org/json?lat=" + latitude + "&lng=" + longitude + "&date=" + day4,
+    //     error: function (request, status, error) {
+    //         console.log("9: " + request.responseText);
+    //     }
+    // }).then(function(data14, success) {
+    //     if(wikiSuccess) {
+    //         console.log("Sunrise/sunset ");
+    //         console.log(data14); 
+    //     } else {
+    //         return;
+    //     };
+    //     })
     
-    //day5
-    }).then(function(){$.ajax({
-        method: "GET",
-        url: "https://cors-anywhere.herokuapp.com/https://api.sunrise-sunset.org/json?lat=" + latitude + "&lng=" + longitude + "&date=" + day5,
-        error: function (request, status, error) {
-            console.log("10: " + request.responseText);
-        }
-    }).then(function(data15, success) {
-        if(wikiSuccess) {
-            console.log("Sunrise/sunset ");
-            console.log(data15);
-        } else {
-            return;
-        };
-        })
+    // //day5
+    // }).then(function(){$.ajax({
+    //     method: "GET",
+    //     url: "https://cors-anywhere.herokuapp.com/https://api.sunrise-sunset.org/json?lat=" + latitude + "&lng=" + longitude + "&date=" + day5,
+    //     error: function (request, status, error) {
+    //         console.log("10: " + request.responseText);
+    //     }
+    // }).then(function(data15, success) {
+    //     if(wikiSuccess) {
+    //         console.log("Sunrise/sunset ");
+    //         console.log(data15);
+    //     } else {
+    //         return;
+    //     };
+    //     })
     
     // // STORMGLASS SUNRISE/ SUNSET
     
@@ -467,13 +518,19 @@ $( document ).ready(function() {
         console.log(response.events[0].logo.url);
         console.log(response.events[0].description.html);
         console.log(response.events[0].name.text);
+        console.log("eventbrite URL: ");
+        console.log(response.events[0].url);
         events.empty();
         var box = function() {
-            for (i=0; i<5; i++){
+            for (i=0; i<10; i++){
                 var container = $('<div>');
+<<<<<<< HEAD
                 container.attr('class', 'card bg-light mb-5').attr('style', 'max-width: 60rem;');
+=======
+                container.attr('class', 'card bg-light mb-3').attr('style', 'max-width: 34rem;');
+>>>>>>> 97083651d554018176aad20d96474d5e47e37c3e
                 var title = $('<div>');
-                title.attr('class', 'card-header').text(response.events[i].name.text);
+                title.attr('class', 'card-header').html("<i>" + response.events[i].name.text + "</i>");
                 console.log(response.events[i].name.text);
                 container.append(title);
                 var cardBody = $('<div>');
@@ -482,34 +539,29 @@ $( document ).ready(function() {
                 var imgP = $('<p>');
                 imgP.attr('class', 'card-text');
                 var img = $('<img>');
+<<<<<<< HEAD
                 img.attr('style', 'width: 70%').attr('style', 'max-width: 35rem;');
+=======
+                img.attr('style', 'width: 70%').attr('style', 'max-width: 18rem;');
+>>>>>>> 97083651d554018176aad20d96474d5e47e37c3e
                 imgP.append(img);
                 cardBody.append(imgP);
                 var text = $('<p>');
                 img.attr('src', response.events[i].logo.url);
                 console.log(response.events[i].logo.url);
-                text.html(response.events[i].description.html).attr('class', 'card-text');
+                text.html(response.events[i].description.text).attr('class', 'card-text');
                 console.log(response.events[i].description.html);
                 cardBody.append(text);
                 events.append(container);
+                var eventUrl = $('<a>');
+                eventUrl.attr('href', response.events[i].url);
+                eventUrl.text("Learn More");
+                cardBody.append(eventUrl);
             }
         };
         box();
        
        });
-    
-
-
-
-
-
-
-
-
-
-
-
-
         });
     
     
@@ -554,46 +606,46 @@ $( document ).ready(function() {
     
     //radio buttons:
     
-    $("input[id='option1']").change(function(){
-        weatherDay.html(weatherMsg1);
-        temperature.html("Temp: " + weatherTemp1);
-        uvIndex.html("UV Index: " + UVindex1);
-        sunrise.html("Sunrise: " + sunrise1);
-        sunset.html("Sunset: " + sunset1);
-        moon.html("Moonphase: " + moon1);
-    });
-    $("input[id='option2']").change(function(){
-        weatherDay.html(weatherMsg2);
-        temperature.html("Temp: " + weatherTemp2);
-        uvIndex.html("UV Index: " + UVindex2);
-        sunrise.html("Sunrise: " + sunrise2);
-        sunset.html("Sunset: " + sunset2);
-        moon.html("Moonphase: " + moon2);
-    });
-    $("input[id='option3']").change(function(){
-        weatherDay.html(weatherMsg3);
-        temperature.html("Temp: " + weatherTemp3);
-        uvIndex.html("UV Index: " + UVindex3);
-        sunrise.html("Sunrise: " + sunrise3);
-        sunset.html("Sunset: " + sunset3);
-        moon.html("Moonphase: " + moon3);
-    });
-    $("input[id='option4']").change(function(){
-        weatherDay.html(weatherMsg4);
-        temperature.html("Temp: " + weatherTemp4);
-        uvIndex.html("UV Index: " + UVindex4);
-        sunrise.html("Sunrise: " + sunrise4);
-        sunset.html("Sunset: " + sunset4);
-        moon.html("Moonphase: " + moon4);
-    });
-    $("input[id='option5']").change(function(){
-        weatherDay.html(weatherMsg5);
-        temperature.html("Temp: " + weatherTemp5);
-        uvIndex.html("UV Index: " + UVindex5);
-        sunrise.html("Sunrise: " + sunrise5);
-        sunset.html("Sunset: " + sunset5);
-        moon.html("Moonphase: " + moon5);
-    });
+    // $("input[id='option1']").change(function(){
+    //     weatherDay.html(weatherMsg1);
+    //     temperature.html("Temp: " + weatherTemp1);
+    //     uvIndex.html("UV Index: " + UVindex1);
+    //     sunrise.html("Sunrise: " + sunrise1);
+    //     sunset.html("Sunset: " + sunset1);
+    //     moon.html("Moonphase: " + moon1);
+    // });
+    // $("input[id='option2']").change(function(){
+    //     weatherDay.html(weatherMsg2);
+    //     temperature.html("Temp: " + weatherTemp2);
+    //     uvIndex.html("UV Index: " + UVindex2);
+    //     sunrise.html("Sunrise: " + sunrise2);
+    //     sunset.html("Sunset: " + sunset2);
+    //     moon.html("Moonphase: " + moon2);
+    // });
+    // $("input[id='option3']").change(function(){
+    //     weatherDay.html(weatherMsg3);
+    //     temperature.html("Temp: " + weatherTemp3);
+    //     uvIndex.html("UV Index: " + UVindex3);
+    //     sunrise.html("Sunrise: " + sunrise3);
+    //     sunset.html("Sunset: " + sunset3);
+    //     moon.html("Moonphase: " + moon3);
+    // });
+    // $("input[id='option4']").change(function(){
+    //     weatherDay.html(weatherMsg4);
+    //     temperature.html("Temp: " + weatherTemp4);
+    //     uvIndex.html("UV Index: " + UVindex4);
+    //     sunrise.html("Sunrise: " + sunrise4);
+    //     sunset.html("Sunset: " + sunset4);
+    //     moon.html("Moonphase: " + moon4);
+    // });
+    // $("input[id='option5']").change(function(){
+    //     weatherDay.html(weatherMsg5);
+    //     temperature.html("Temp: " + weatherTemp5);
+    //     uvIndex.html("UV Index: " + UVindex5);
+    //     sunrise.html("Sunrise: " + sunrise5);
+    //     sunset.html("Sunset: " + sunset5);
+    //     moon.html("Moonphase: " + moon5);
+    // });
     
     
     
