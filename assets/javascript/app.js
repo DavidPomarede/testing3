@@ -235,7 +235,7 @@ $( document ).ready(function() {
     
         }).then(function(){$.ajax({
             method: "GET",
-            url: "http://api.openweathermap.org/data/2.5/forecast/?lat=" + latitude + "&lon=" + longitude + "&APPID=0cd45b9194d49ecbc168d3cc2ab3902e",
+            url: "https://api.openweathermap.org/data/2.5/forecast/?lat=" + latitude + "&lon=" + longitude + "&APPID=0cd45b9194d49ecbc168d3cc2ab3902e",
             error: function (request, status, error) {
                 console.log("2: " + request.responseText);
             }
