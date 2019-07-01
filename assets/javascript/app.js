@@ -7,17 +7,13 @@ $( document ).ready(function() {
     var latitude;
     var longitude;
     var searchTerm;
-    // var searchTerm2;
     var searchRefined;
     var searchRefined2;
     var searchRefined3;
     var wikiSearch;
-    // var wikiResults;
     var QRimg = $('<img>');
     $('#qrstuff').append(QRimg);
     var zipCode;
-    // var weatherUrl;
-    // var pollutionUrl;
     var wikiUrl;
     var weatherDay = $('#weatherDay');
     var weatherDay2 = $('#weatherDay2');
@@ -25,8 +21,7 @@ $( document ).ready(function() {
     var weatherNight = $('#weatherNight');
     var temperature = $('#temperature');
     var temperature2 = $('#temperature2');
-    var temperature3 = $('#temperature3');
-    
+    var temperature3 = $('#temperature3');   
     var populationDisplay = $('#population');
     var aqiMessage = $('#aqiMessage');
     var pm = $('#pm');
@@ -38,54 +33,47 @@ $( document ).ready(function() {
     var uvIndex2 = $('#uvIndex2');
     var uvIndex3 = $('#uvIndex3');
     var addressDisplay = $('#addressDisplay');
-    var weatherButtons = $('#weatherButtons');
+    // var weatherButtons = $('#weatherButtons');
     var recentBox = $('#recentBox');
-
-    var sunrise = $('#sunrise');
-    var sunset = $('#sunset');
-    var moon = $('#moon');
-
+    // var sunrise = $('#sunrise');
+    // var sunset = $('#sunset');
+    // var moon = $('#moon');
     var events = $('#events');
-    var recent = $('#recent');
-
+    // var recent = $('#recent');
     var wikiSuccess = true;
-    
-    
-    var weatherMsg1;
-    var weatherMsg2;
-    var weatherMsg3;
-    var weatherMsg4;
-    var weatherMsg5;
-    var weatherTemp1;
-    var weatherTemp2;
-    var weatherTemp3;
-    var weatherTemp4;
-    var weatherTemp5;
-    var UVindex1;
-    var UVindex2;
-    var UVindex3;
-    var UVindex4;
-    var UVindex5;
-    var sunrise1;
-    var sunrise2;
-    var sunrise3;
-    var sunrise4;
-    var sunrise5;
-    var sunset1;
-    var sunset2;
-    var sunset3;
-    var sunset4;
-    var sunset5;
-    var moon1;
-    var moon2;
-    var moon3;
-    var moon4;
-    var moon5;
+    // var weatherMsg1;
+    // var weatherMsg2;
+    // var weatherMsg3;
+    // var weatherMsg4;
+    // var weatherMsg5;
+    // var weatherTemp1;
+    // var weatherTemp2;
+    // var weatherTemp3;
+    // var weatherTemp4;
+    // var weatherTemp5;
+    // var UVindex1;
+    // var UVindex2;
+    // var UVindex3;
+    // var UVindex4;
+    // var UVindex5;
+    // var sunrise1;
+    // var sunrise2;
+    // var sunrise3;
+    // var sunrise4;
+    // var sunrise5;
+    // var sunset1;
+    // var sunset2;
+    // var sunset3;
+    // var sunset4;
+    // var sunset5;
+    // var moon1;
+    // var moon2;
+    // var moon3;
+    // var moon4;
+    // var moon5;
     
     var offset;
-
     var searches = [];
-    
     
     $('#submit').click(function(){ 
     searchTerm = $('#state');
@@ -247,7 +235,7 @@ $( document ).ready(function() {
     
         }).then(function(){$.ajax({
             method: "GET",
-            url: "https://cors-anywhere.herokuapp.com/http://api.openweathermap.org/data/2.5/forecast/?lat=" + latitude + "&lon=" + longitude + "&APPID=0cd45b9194d49ecbc168d3cc2ab3902e",
+            url: "http://api.openweathermap.org/data/2.5/forecast/?lat=" + latitude + "&lon=" + longitude + "&APPID=0cd45b9194d49ecbc168d3cc2ab3902e",
             error: function (request, status, error) {
                 console.log("2: " + request.responseText);
             }
@@ -391,91 +379,91 @@ $( document ).ready(function() {
     // sunrise/sunset times
     
     // today
-    }).then(function(){$.ajax({
-        method: "GET",
-        url: "https://cors-anywhere.herokuapp.com/https://api.sunrise-sunset.org/json?lat=" + latitude + "&lng=" + longitude + "&date=" + today,
-        error: function (request, status, error) {
-            console.log("6: " + request.responseText);
-        }
-    }).then(function(data11, success) {
-        if(wikiSuccess) {
-            console.log("Sunrise/sunset ");
-            console.log(data11); 
-            console.log(data11.results.sunrise);
-            console.log(data11.results.sunset);
-            console.log("making sure offset works " + offset);
-            var sunriseDate1 = today + " " + data11.results.sunrise;
-            console.log(moment.utc(sunriseDate1, "YYYY-MM-DD HH:MM:SS A").add(4, 'h'));
-            console.log(moment(sunriseDate1).add(-4, "Hours"));
-        } else {
-            return;
-        };
-        })
+    // }).then(function(){$.ajax({
+    //     method: "GET",
+    //     url: "https://cors-anywhere.herokuapp.com/https://api.sunrise-sunset.org/json?lat=" + latitude + "&lng=" + longitude + "&date=" + today,
+    //     error: function (request, status, error) {
+    //         console.log("6: " + request.responseText);
+    //     }
+    // }).then(function(data11, success) {
+    //     if(wikiSuccess) {
+    //         console.log("Sunrise/sunset ");
+    //         console.log(data11); 
+    //         console.log(data11.results.sunrise);
+    //         console.log(data11.results.sunset);
+    //         console.log("making sure offset works " + offset);
+    //         var sunriseDate1 = today + " " + data11.results.sunrise;
+    //         console.log(moment.utc(sunriseDate1, "YYYY-MM-DD HH:MM:SS A").add(4, 'h'));
+    //         console.log(moment(sunriseDate1).add(-4, "Hours"));
+    //     } else {
+    //         return;
+    //     };
+    //     })
     
-    // day2
-    }).then(function(){$.ajax({
-        method: "GET",
-        url: "https://cors-anywhere.herokuapp.com/https://api.sunrise-sunset.org/json?lat=" + latitude + "&lng=" + longitude + "&date=" + day2,
-        error: function (request, status, error) {
-            console.log("7: " + request.responseText);
-        }
-    }).then(function(data12, success) {
-        if(wikiSuccess) {
-            console.log("Sunrise/sunset ");
-            console.log(data12); 
-        } else {
-            return;
-        };
-        })
+    // // day2
+    // }).then(function(){$.ajax({
+    //     method: "GET",
+    //     url: "https://cors-anywhere.herokuapp.com/https://api.sunrise-sunset.org/json?lat=" + latitude + "&lng=" + longitude + "&date=" + day2,
+    //     error: function (request, status, error) {
+    //         console.log("7: " + request.responseText);
+    //     }
+    // }).then(function(data12, success) {
+    //     if(wikiSuccess) {
+    //         console.log("Sunrise/sunset ");
+    //         console.log(data12); 
+    //     } else {
+    //         return;
+    //     };
+    //     })
     
-    //day3
-    }).then(function(){$.ajax({
-        method: "GET",
-        url: "https://cors-anywhere.herokuapp.com/https://api.sunrise-sunset.org/json?lat=" + latitude + "&lng=" + longitude + "&date=" + day3,
-        error: function (request, status, error) {
-            console.log("8: " + request.responseText);
-        }
-    }).then(function(data13, success) {
-        if(wikiSuccess) {
-            console.log("Sunrise/sunset ");
-            console.log(data13); 
-        } else {
-            return;
-        };
-        })
+    // //day3
+    // }).then(function(){$.ajax({
+    //     method: "GET",
+    //     url: "https://cors-anywhere.herokuapp.com/https://api.sunrise-sunset.org/json?lat=" + latitude + "&lng=" + longitude + "&date=" + day3,
+    //     error: function (request, status, error) {
+    //         console.log("8: " + request.responseText);
+    //     }
+    // }).then(function(data13, success) {
+    //     if(wikiSuccess) {
+    //         console.log("Sunrise/sunset ");
+    //         console.log(data13); 
+    //     } else {
+    //         return;
+    //     };
+    //     })
     
     
-    //day4
-    }).then(function(){$.ajax({
-        method: "GET",
-        url: "https://cors-anywhere.herokuapp.com/https://api.sunrise-sunset.org/json?lat=" + latitude + "&lng=" + longitude + "&date=" + day4,
-        error: function (request, status, error) {
-            console.log("9: " + request.responseText);
-        }
-    }).then(function(data14, success) {
-        if(wikiSuccess) {
-            console.log("Sunrise/sunset ");
-            console.log(data14); 
-        } else {
-            return;
-        };
-        })
+    // //day4
+    // }).then(function(){$.ajax({
+    //     method: "GET",
+    //     url: "https://cors-anywhere.herokuapp.com/https://api.sunrise-sunset.org/json?lat=" + latitude + "&lng=" + longitude + "&date=" + day4,
+    //     error: function (request, status, error) {
+    //         console.log("9: " + request.responseText);
+    //     }
+    // }).then(function(data14, success) {
+    //     if(wikiSuccess) {
+    //         console.log("Sunrise/sunset ");
+    //         console.log(data14); 
+    //     } else {
+    //         return;
+    //     };
+    //     })
     
-    //day5
-    }).then(function(){$.ajax({
-        method: "GET",
-        url: "https://cors-anywhere.herokuapp.com/https://api.sunrise-sunset.org/json?lat=" + latitude + "&lng=" + longitude + "&date=" + day5,
-        error: function (request, status, error) {
-            console.log("10: " + request.responseText);
-        }
-    }).then(function(data15, success) {
-        if(wikiSuccess) {
-            console.log("Sunrise/sunset ");
-            console.log(data15);
-        } else {
-            return;
-        };
-        })
+    // //day5
+    // }).then(function(){$.ajax({
+    //     method: "GET",
+    //     url: "https://cors-anywhere.herokuapp.com/https://api.sunrise-sunset.org/json?lat=" + latitude + "&lng=" + longitude + "&date=" + day5,
+    //     error: function (request, status, error) {
+    //         console.log("10: " + request.responseText);
+    //     }
+    // }).then(function(data15, success) {
+    //     if(wikiSuccess) {
+    //         console.log("Sunrise/sunset ");
+    //         console.log(data15);
+    //     } else {
+    //         return;
+    //     };
+    //     })
     
     // // STORMGLASS SUNRISE/ SUNSET
     
@@ -530,13 +518,15 @@ $( document ).ready(function() {
         console.log(response.events[0].logo.url);
         console.log(response.events[0].description.html);
         console.log(response.events[0].name.text);
+        console.log("eventbrite URL: ");
+        console.log(response.events[0].url);
         events.empty();
         var box = function() {
             for (i=0; i<10; i++){
                 var container = $('<div>');
-                container.attr('class', 'card bg-light mb-3').attr('style', 'max-width: 38rem;');
+                container.attr('class', 'card bg-light mb-3').attr('style', 'max-width: 34rem;');
                 var title = $('<div>');
-                title.attr('class', 'card-header').text(response.events[i].name.text);
+                title.attr('class', 'card-header').html("<i>" + response.events[i].name.text + "</i>");
                 console.log(response.events[i].name.text);
                 container.append(title);
                 var cardBody = $('<div>');
@@ -551,28 +541,19 @@ $( document ).ready(function() {
                 var text = $('<p>');
                 img.attr('src', response.events[i].logo.url);
                 console.log(response.events[i].logo.url);
-                text.html(response.events[i].description.html).attr('class', 'card-text');
+                text.html(response.events[i].description.text).attr('class', 'card-text');
                 console.log(response.events[i].description.html);
                 cardBody.append(text);
                 events.append(container);
+                var eventUrl = $('<a>');
+                eventUrl.attr('href', response.events[i].url);
+                eventUrl.text("Learn More");
+                cardBody.append(eventUrl);
             }
         };
         box();
        
        });
-    
-
-
-
-
-
-
-
-
-
-
-
-
         });
     
     
