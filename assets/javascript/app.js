@@ -360,7 +360,7 @@ $( document ).ready(function() {
                     center: [latitude, longitude],
                     zoom: 15
                 });
-                L.tileLayer('https://{s}.tile.osm.org/{z}/{x}/{y}.png', {
+                L.tileLayer('http://{s}.tile.osm.org/{z}/{x}/{y}.png', {
                     attribution: '&copy; OpenStreetMap'
                 }).addTo(map);
                 // map popup label
