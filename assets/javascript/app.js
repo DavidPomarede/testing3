@@ -263,7 +263,7 @@ $( document ).ready(function() {
                 weatherTemp5 = Math.ceil(((data2.list[32].main.temp - 273.15) * 1.8) + 32) + "°F";
             }
             })
-    
+    // comment
     // AIR POLLUTION
     
         }).then(function(){$.ajax({
