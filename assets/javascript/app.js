@@ -471,7 +471,7 @@ $( document ).ready(function() {
         var box = function() {
             for (i=0; i<5; i++){
                 var container = $('<div>');
-                container.attr('class', 'card bg-light mb-3').attr('style', 'max-width: 18rem;');
+                container.attr('class', 'card bg-light mb-5').attr('style', 'max-width: 60rem;');
                 var title = $('<div>');
                 title.attr('class', 'card-header').text(response.events[i].name.text);
                 console.log(response.events[i].name.text);
@@ -482,7 +482,7 @@ $( document ).ready(function() {
                 var imgP = $('<p>');
                 imgP.attr('class', 'card-text');
                 var img = $('<img>');
-                img.attr('style', 'width: 70%').attr('style', 'max-width: 13rem;');
+                img.attr('style', 'width: 70%').attr('style', 'max-width: 35rem;');
                 imgP.append(img);
                 cardBody.append(imgP);
                 var text = $('<p>');

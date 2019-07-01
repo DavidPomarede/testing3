@@ -1,14 +1,99 @@
-h1 {
-    background-color: #33ccff;
-    padding-left: 2rem;
-    padding-right: 2rem;
+
+/*
+    colors:
+    #3c415e
+    #738598l0
+    #1cb3c8
+    #dfe2e2
+*/
+
+
+body {
+    font-family: 'B612 Mono', monospace;
+    background-color: #fff;
+    background-image: url(map.jpg);
+    background-repeat: no-repeat;
+    background-size: cover;
+
+    
+}
+
+#submit{
+    background-color: #1cb3c8;
+    outline-color: #dfe2e2;
+}
+
+
+#search{
+    font-size: 22px;
+    color: #3c415e;
+}
+.title{
+    margin-left: 100px;
+    margin-right: 100px;
+}
+.container2{
+    margin-left: 200px;
+    margin-right: 200px;
+}
+
+
+.jumbotron{
+    padding:10px 0px 25px 0px;
+    margin: 0px auto;
+    background-color:  #738598;
+
+}
+
+.display-4 {
+    font-family: 'Josefin Sans', sans-serif;
+   color:#dfe2e2;
+    font-size: 60px;
+    text-align: center;
+    
+}
+ .lead{
+    font-size: 19px;
+    text-align: center;
+    color:#3c415e;
 }
 
 #mapid { 
+   /* background-color: #738598;*/
     height: 280px;
     width: 280px; 
 }
 
-body {
-    font-family: 'B612 Mono', monospace;
+.col-sm{
+    background-color: #dfe2e256;
 }
+
+#state{
+    color:#3c415e;
+
+}
+#events{
+    width: auto;
+    background-color: #3c415e85;
+
+}
+#apiMessage{
+        width: 100px;
+}
+.btn-group{
+    margin: 5px;
+}
+.card {
+    margin: 0px auto;
+    padding-top: 5px;
+}
+.cardBody{
+    padding: 15px;
+}
+.col-sm{
+    padding-top: 15px;
+}
+h1{
+    color:#3c415e;
+}
+
