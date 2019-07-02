@@ -64,27 +64,8 @@ body {
     width: 280px; 
 }
 
-<<<<<<< HEAD
 .col-sm{
     background-color: #dfe2e256;
-=======
-body {
-    font-family: 'B612 Mono', monospace;
-    background-color: #99CCCC;
-}
-
-.jumbotron {
-    /* background-color: #0191C8; */
-    background-image: url('../images/grass.png');
-}
-
-h3 {
-    color: white;
-}
-
-p {
-    font-family: 'Raleway', sans-serif;
->>>>>>> 97083651d554018176aad20d96474d5e47e37c3e
 }
 
 #state{
@@ -103,7 +84,8 @@ p {
     margin: 5px;
 }
 .card {
-    margin: 0px auto;
+    margin: 5px auto;
+    
     padding-top: 5px;
 }
 .cardBody{
@@ -113,6 +95,9 @@ p {
     padding-top: 15px;
 }
 h1{
-    color:#3c415e;
+    color:#dfe2e2;
+}
+#wikiInfo{
+    color: #dfe2e2;
 }
 
