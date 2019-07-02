@@ -524,7 +524,11 @@ $( document ).ready(function() {
         var box = function() {
             for (i=0; i<10; i++){
                 var container = $('<div>');
+<<<<<<< HEAD
+                container.attr('class', 'card bg-light mb-5').attr('style', 'max-width: 60rem;');
+=======
                 container.attr('class', 'card bg-light mb-3').attr('style', 'max-width: 34rem;');
+>>>>>>> 97083651d554018176aad20d96474d5e47e37c3e
                 var title = $('<div>');
                 title.attr('class', 'card-header').html("<i>" + response.events[i].name.text + "</i>");
                 console.log(response.events[i].name.text);
@@ -535,7 +539,11 @@ $( document ).ready(function() {
                 var imgP = $('<p>');
                 imgP.attr('class', 'card-text');
                 var img = $('<img>');
+<<<<<<< HEAD
+                img.attr('style', 'width: 70%').attr('style', 'max-width: 35rem;');
+=======
                 img.attr('style', 'width: 70%').attr('style', 'max-width: 18rem;');
+>>>>>>> 97083651d554018176aad20d96474d5e47e37c3e
                 imgP.append(img);
                 cardBody.append(imgP);
                 var text = $('<p>');
