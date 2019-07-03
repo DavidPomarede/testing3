@@ -11,11 +11,15 @@
 body {
     font-family: 'B612 Mono', monospace;
     background-color: #fff;
-    background-image: url(map.jpg);
+    /* background-image: url(map.jpg); */
     background-repeat: no-repeat;
     background-size: cover;
 
     
+}
+
+h2 {
+    color: white;
 }
 
 #submit{

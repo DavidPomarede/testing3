@@ -3,133 +3,245 @@
   <head>
     	<meta charset="utf-8">
     	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-      
       <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
-      <link href="https://fonts.googleapis.com/css?family=B612+Mono&display=swap" rel="stylesheet">
-      <link href="https://fonts.googleapis.com/css?family=Josefin+Sans&display=swap" rel="stylesheet">
+      <link href="https://fonts.googleapis.com/css?family=Josefin+Sans|B612+Mono|Raleway|DM+Serif+Display|B612+Mono&display=swap" rel="stylesheet">
       <link rel="stylesheet" href="assets/css/style.css">
 	 <link rel="stylesheet" href="https://unpkg.com/leaflet@1.5.1/dist/leaflet.css"
    integrity="sha512-xwE/Az9zrjBIphAcBb3F6JVqxf46+CDLwfLMHloNu6KEQCAWi6HcDUbeOfBIptF7tcCzusKFjFw2yuvEpDL9wQ=="
    crossorigin=""/>
 
-   
+    <!--test-->
     <title>Totally Rad Travel Stuff</title>
   </head>
-  
-  
-<body>  
- <div id="wrapper">
-  
-  <div class="title">
- <!--jumbotron-->
-      <div class="jumbotron">
-          <div class="container">
-            <h1 class="display-4">Smart Travel & Events</h1>
-            <p class="lead">Weather and Event Information for the Traveling Nerd.</p>
-          </div>
-        </div>
-        <br>
-        <hr>
-        <br>
-    
-  </div>   
-  <div class="container2">
-      <div class="row">
-        <div class="col-sm" id="userInput_form">
-            
-          <label for="input1" id="search">Where are you travelling to?</label>
-            <input type="text" class="form-control" id="state" placeholder="1234 Main St.">
-            <br>
-            <button class="btn float-right" id="submit">Search</button>
-            <br><br>
-            <div class="card bg-light mb-3" id="recentBox">
-                <div class="card-header">Recent Searches</div>
-                <div class="card-body" id="recent">
-                  <!-- <p class="card-text">New York, NY</p>
-                  <p class="card-text">Indonesia</p> -->
-                </div>
-      
-              </div>
-        </div>
-       
-       <div class="col-sm">
-         
-              <div id="addressDisplay"></div>
-                
-              <div class="btn-group btn-group-toggle" data-toggle="buttons">
-                   <label class="btn btn-secondary active">
-                    <input type="radio" name="options" id="option1" autocomplete="off" checked> Today 
-                  </label>
-        
-                  <label class="btn btn-secondary">
-                     <input type="radio" name="options" id="option2" autocomplete="off"> Day 2 
-                   </label>
-                  <label class="btn btn-secondary">
-                    <input type="radio" name="options" id="option3" autocomplete="off"> Day 3
-                   </label>
-                 <label class="btn btn-secondary">
-                <input type="radio" name="options" id="option4" autocomplete="off"> Day 4 
-                 </label>
-                <label class="btn btn-secondary">
-                   <input type="radio" name="options" id="option5" autocomplete="off"> Day 5 
-                 </label>
-        </div>
-        <div id="weatherDay"></div>
-        <div id="temperature"></div>
-        <div id="uvIndex"></div>
-        <div id="population"></div>
-        <div id="pm"></div>
-       <div id="humidity"></div>
-       <div id="pressure"></div>
-       <div id="windSpeed"></div>
-      <div id="windDir"></div>
-            </div>
-          
+  <body>  
+  <!-- <br><br>      	<br> -->
 
-          <div class="col-sm" id="recent_search">
-             
-              <div id="mapid"></div>
-              <div id="aqiMessage"></div>
-              <div id="qrstuff"></div>
-              
-            
-          </div>
 
-        </div>
-       
-       
+
+
+  <div class="container">
+    <div class="row justify-content-md-left">
+      <!-- <div class="col col-lg-2">
+
+      </div> -->
+      <div class="col col-lg-12">
+        <br>
+          <div class="jumbotron">
+              <h1 class="display-4"><i>Outdoor Travel Information</i></h1>
+              <p class="lead"><h3>> Weather and Event Information for the Traveling Nerd</h3></p>
+              <!-- <hr class="my-4">
+              <p><strong>Where are you travelling to?</strong></p>
+              <input type="text" class="form-control" id="state" placeholder="1234 Main St.">
         
-       <div class="row2">
-          <div class="col">
-             
-             <hr>
-            <div id="wikiInfo"></div>
-            <br>
-            
-    </div>
-           
-    
-    <div class="col-md"id="localEvents">
-              <h1>Local Events:</h1>
-              <div id="events"></div>
-    </div>
-            <div class="col">
+              <button class="btn btn-outline-primary float-right" id="submit">Search</button>
+         -->
             </div>
-            
-            </div>
-           
-    </div>
-          <div id="footer">
-              
-            </div>
+
       </div>
+      <!-- <div class="col col-lg-2">
+          Weather Information and travel health
+
+
+
+
+      </div> -->
+      <!-- <div class="col col-lg-2">
+
+
+
+
+
+
+      </div> -->
+
+
+
+
+
     </div>
+  </div>   
+
+  <div class="container">
+      <div class='row justify-content-md-left'>
+        <div class='col-md-auto'>
+          <br>
+            <label for="input1"><h2>Where are you travelling to?</h2></label>
+        </div>
+
+
+      </div>
+
+
+      <div class="row justify-content-md-left">
+
+          <div class="col-md-auto">
+
+              <div class="form-group">
+
+                  <input type="text" class="form-control" id="state" placeholder="1234 Main St.">
+
+                  <br><br>
+              </div>
+
+          </div>
+
+
+          <div class="col-md-auto">
+              <button class="btn btn-outline-primary float-right" id="submit">Search</button>
+
+          </div>
+      </div>
+    <div class="row justify-content-md-left">
+      <!-- <div class="col col-lg-2">
+
+      </div> -->
+      <div class="col col-lg-3" id="message2">
+
+
+  	<!-- <div class="form-group">
+    		<label for="input2">Brewery Name?</label>
+    		<input type="text" class="form-control" id="brewery" placeholder="Another input">
+	</div>
+	<p>Options:</p>
+	<select class="form-control" id="select1"></select>
+	<p>Type:</p>
+        <select class="form-control" id="select2"></select> -->
+        <div id="addressDisplay"></div>
+        <!-- <div class="btn-group btn-group-toggle" data-toggle="buttons" id="weatherButtons">
+          <label class="btn btn-secondary active">
+            <input type="radio" name="options" id="option1" autocomplete="off" checked> Today 
+          </label>
+          <label class="btn btn-secondary">
+            <input type="radio" name="options" id="option2" autocomplete="off"> Day 2 
+          </label>
+          <label class="btn btn-secondary">
+            <input type="radio" name="options" id="option3" autocomplete="off"> Day 3
+          </label>
+          <label class="btn btn-secondary">
+            <input type="radio" name="options" id="option4" autocomplete="off"> Day 4 
+          </label>
+          <label class="btn btn-secondary">
+            <input type="radio" name="options" id="option5" autocomplete="off"> Day 5 
+          </label>
+        </div> -->
+
+  <div id="weatherDay"></div>
+  <div id="temperature"></div>
+  <div id="uvIndex"></div>
+  <div id="sunrise"></div>
+  <div id="sunset"></div>
+  <div id="moon"></div>
+  <div id="weatherDay2"></div>
+  <div id="temperature2"></div>
+  <div id="uvIndex2"></div>
+  <div id="weatherDay3"></div>
+  <div id="temperature3"></div>
+  <div id="uvIndex3"></div>
+  <!-- <div id="weatherNight"></div> -->
+
+
+
+  <hr>
+  <div id="population"></div>
+  <div id="pm"></div>
+  <div id="humidity"></div>
+  <div id="pressure"></div>
+  <div id="windSpeed"></div>
+  <div id="windDir"></div>
+
+
+  <br><br>
+  <div id="recentBox"></div>
+  <!-- <div class="card bg-light mb-3" style="max-width: 25rem;">
+    <div class="card-header">Recent Searches</div>
+    <div class="card-body" id="recent">
+      <p class="card-text">New York, NY</p>
+      <p class="card-text">Indonesia</p>
+    </div>
+
+  </div> -->
+
+<!-- first commit on garrett2-->
+	</div>
+
+
+      <div class="col col-lg-6">
+
+
+
+
+
+
+
+
+
+
+        <!-- <br><strong>Local Events:</strong> -->
+        <div id="eventTitle"></div>
+        <div id="events"></div>
+      </div>
+
+
+  <!-- hello -->
+  <div class="col col-lg-3">
+
+  <br>
+    <div id="mapid"></div>
+    <div id="aqiMessage"></div>
+    <hr>
+    <div id="wikiInfo"></div>
+    <br>
+    <div id="qrstuff"></div>
+    </div>
+  <!-- hello -->
   
+
+
+      </div>
+
+
+
+
+    </div>
+
+
+
+
+    <div class="row justify-content-md-center">
+
+
+
+      <div class="col col-lg-2">
+
+
+
+	<div id="results"><div>
+ 	
+  </div>
+
+
+  </div>
   
-       
+
+
+
+
+  </div>
+
+
+
+
+
+
+
+  </div>
+
 
 
 </div>
+
+
+
  <script src="https://unpkg.com/leaflet@1.5.1/dist/leaflet.js"
    integrity="sha512-GffPMF3RvMeYyc1LWMHtK8EbPv0iNZ8/oTtHPx9/cc2ILxQ+u905qIwdpULaqDkyBKgOaB57QTMg7ztg8Jm2Og=="
    crossorigin=""></script>

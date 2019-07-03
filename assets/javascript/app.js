@@ -1,4 +1,4 @@
-//document.body.style.backgroundImage = "url('assets/images/trees.png')";
+document.body.style.backgroundImage = "url('assets/images/map.jpg')";
 
 
 $( document ).ready(function() {
@@ -235,7 +235,7 @@ $( document ).ready(function() {
     
         }).then(function(){$.ajax({
             method: "GET",
-            url: "https://api.openweathermap.org/data/2.5/forecast/?lat=" + latitude + "&lon=" + longitude + "&APPID=0cd45b9194d49ecbc168d3cc2ab3902e",
+            url: "http://api.openweathermap.org/data/2.5/forecast/?lat=" + latitude + "&lon=" + longitude + "&APPID=0cd45b9194d49ecbc168d3cc2ab3902e",
             error: function (request, status, error) {
                 console.log("2: " + request.responseText);
             }
@@ -360,7 +360,7 @@ $( document ).ready(function() {
                     center: [latitude, longitude],
                     zoom: 15
                 });
-                L.tileLayer('http://{s}.tile.osm.org/{z}/{x}/{y}.png', {
+                L.tileLayer('https://{s}.tile.osm.org/{z}/{x}/{y}.png', {
                     attribution: '&copy; OpenStreetMap'
                 }).addTo(map);
                 // map popup label
@@ -535,7 +535,7 @@ $( document ).ready(function() {
                 var imgP = $('<p>');
                 imgP.attr('class', 'card-text');
                 var img = $('<img>');
-                img.attr('style', 'width: 70%').attr('style', 'max-width: 35rem;');
+                img.attr('style', 'width: 70%').attr('style', 'max-width: 18rem;');
                 imgP.append(img);
                 cardBody.append(imgP);
                 var text = $('<p>');
